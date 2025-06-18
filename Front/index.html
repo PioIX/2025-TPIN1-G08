@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Higher or Lower</title>
+  <link rel="stylesheet" href="/Front/estilos.css"/>
+<link rel="icon" type="image/x-icon" href="https://cdn.pixabay.com/photo/2013/07/12/12/18/arrow-145532_1280.png">
+</head>
+<body>
+
+  <!-- Pantalla de Inicio -->
+  <div class="pantalla-inicio" id="inicio" style="display: flex;">
+    <div class="inicio-contenido">
+      <div class="textos">
+        <h1 class="higher">HIGHER</h1>
+        <span class="or">or</span>
+        <h1 class="lower">LOWER</h1>
+      </div>
+
+      <div class="caja-juego">
+        <div class="titulo-juego">
+          <span>the</span>
+          <span class="bold">GAME</span><br>
+          <span>of</span>
+          <span class="bold">GAMES</span>
+        </div><br>
+        <button class="boton-play" onclick="mostrarLogIn()">PLAY</button>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Pantalla de Login -->
+  <div class="pantalla-login" id="logIn" style="display: none;">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+
+    <div class="login-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="avatar" alt="Avatar">
+      <input type="text" placeholder="email" id = "email" />
+      <input type="password" placeholder="Contraseña" id = "contraseña"/>
+      <div class="botones">
+        <button class="boton-play" onclick="logIn()">Iniciar sesión</button>
+        <button class="boton-play" onclick="registrarse()">Registrarse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Administrador -->
+<div id="modal-admin" class="modal" style="display: none;">
+  <div class="modal-contenido">
+    <h2>Bienvenido, Administrador</h2>
+    <p>¿Qué desea hacer?</p>
+    <div class="botones">
+      <button onclick="mostrarJuego()">Jugar</button>
+      <button onclick="administrar()">Administrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Pantalla de Administración -->
+
+<div class="pantalla-admin" id="admin" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <h1>Panel de Administración</h1>
+  <br>
+
+  <div class="admin-formulario">
+  <input type="text" placeholder="Ingrese el nombre juego" id="game_name">
+    <input type="text" placeholder="Ingrese las cantidas de descarags" id="cantidad_descargas">
+    <input type="text" placeholder="Ingrese la direccion de imagen del juego" id="imagen_juego">
+    <button onclick="newGame()">Agregar juego</button>
+  </div>
+
+  <div class="admin-formulario">
+    <input type="text" placeholder="Ingrese el id del juego que desea cambiar" id="id_juego">
+    <button onclick="modalCambiarJuego()">Modificar juego</button>
+  </div>
+
+  <div class="admin-formulario">
+    <input type="text" placeholder="Ingrese el ID del juego que desea eliminar" id="id_juego_eliminar">
+    <button onclick="idJuego()">Eliminar Juego</button>
+  </div>
+
+  <div class="admin-formulario">
+    <input type="text" placeholder="Ingrese el ID del usuario que desea eliminar" id="id_user">
+    <button onclick="idUser()">Eliminar Usuario</button>
+  </div>
+  <button class="boton-play2" onclick="mostrarJuego()">JUGAR</button>
+</div>
+<!-- Modal para Modificar Juego -->
+<div id="modal-modificar-juego" class="modal" style="display: none;">
+  <div class="modal-contenido">
+    <h2>Modificar Juego</h2>
+    <input type="text" id="mod-nombre" placeholder="Nuevo nombre del juego">
+    <input type="text" id="mod-descargas" placeholder="Nueva cantidad de descargas">
+    <input type="text" id="mod-imagen" placeholder="Enlace de la imagen (escriba none si no hay)">
+    <div class="botones">
+      <button onclick="cambiarJuego()">Guardar</button>
+      <button onclick="administrar()">Cancelar</button>
+    </div>
+  </div>
+</div>
+  <!--pagina Juego-->
+  <div class="pantalla-juego" id="juego" style="display: none;">
+<h2>¿QUIÉN TIENE MÁS DESCARGAS?</h2>
+<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+<!-- <img src="/Front/HIGHER.png" alt="Flechas" class="icono-flechas" />
+</div>-->
+
+<div class="juego-contenedor">
+  <div class="juego-card izquierda">
+    <div class="nombre-juego">Elden Ring</div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg" class="imagen-juego" alt="Elden Ring">
+    <div class="flecha roja">←</div>
+  </div>
+
+  <div class="versus">VS</div>
+
+  <div class="juego-card derecha">
+    <div class="nombre-juego">StarCraft II</div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/2/29/StarCraft_II_-_Box_Art.jpg" class="imagen-juego" alt="StarCraft II">
+    <div class="flecha verde">→</div>
+  </div>
+</div>
+<script src = "functions.js"></script>
+<script src = "index.js"></script>
+<script src = "dom.js"></script>
+</body>
+</html>
