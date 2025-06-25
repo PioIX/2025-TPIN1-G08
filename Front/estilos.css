@@ -100,11 +100,7 @@ body {
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-<<<<<<< Updated upstream
   transition: background-color 0.5s ease, transform 0.5s ease;
-=======
-  transition: background-color 0.3s;
->>>>>>> Stashed changes
 }
 
 .boton-play:hover {
@@ -188,11 +184,7 @@ body {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-<<<<<<< Updated upstream
   transition: background-color 0.3s ease, transform 0.3 ease;
-=======
-  transition: background-color 0.3s;
->>>>>>> Stashed changes
 }
 
 .botones button:hover {
