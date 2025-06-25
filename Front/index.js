@@ -147,7 +147,7 @@ async function nuevoUsuario(datos){
         },
         body: JSON.stringify(datos)
     })
-    let nuevoUsuario = (await result).json()
+    let nuevoUsuario = await result.json()
     return nuevoUsuario
 }
 function nuevosDatosUser(){
