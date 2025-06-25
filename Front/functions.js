@@ -117,7 +117,7 @@ function validarImagen(url) {
 async function cambiarJuego(){
   const games = await juegos();
   const imagenValida = await validarImagen(getModImg());
-    let modificar ={
+    let modificar ={  
         id_juego: idParaModificar,
         game_name: getModName(),
         cant_descargas: getModDownloads(),
