@@ -340,23 +340,22 @@ body {
 
 .pantalla-admin {
   height: 100vh;
- background: linear-gradient(to right, #2f1349, #085ac5);;
+  background: linear-gradient(to right, #2f1349, #085ac5);;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 20px;
   text-align: center;
   gap: 20px;
 }
 h1{
   margin-top: 5px;
-  margin-bottom: -10px;
+  margin-bottom: -36px;
   color: #85f08b;
 }
 .admin-formulario {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1px;
   width: 100%;
   max-width: 400px;
 }
@@ -394,6 +393,7 @@ h1{
   transition: background 0.3s;
   box-shadow: none;
   background-image: none;
+  margin-top: -5px;
 }
 
 
@@ -438,4 +438,17 @@ h1{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* Chequear juego */
+
+.chequear-juego {
+  height: 100vh;
+  background: linear-gradient(to right, #2f1349, #085ac5);;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  text-align: center;
+  gap: 20px;
 }

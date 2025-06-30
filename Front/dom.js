@@ -40,6 +40,15 @@ function administrar(){
     document.getElementById('admin').style.display = 'flex';
     document.getElementById('modal-modificar-juego').style.display = 'none';
 }
+function checkearJuego(){
+    document.getElementById('inicio').style.display = 'none';
+    document.getElementById('logIn').style.display = 'none';
+    document.getElementById('juego').style.display = 'none';
+    document.getElementById('modal-admin').style.display = 'none';
+    document.getElementById('admin').style.display = 'none';
+    document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'flex'
+}
 let idParaModificar = null
 async function modalCambiarJuego(){
     const games = await juegos();
@@ -62,7 +71,13 @@ async function modalCambiarJuego(){
     alert("El id no existe");
     
 }
-
+let modal1 = document.getElementById("modal-modificar-juego")
+function openmodal() {
+    modal1.showModal()
+}
+function closemodal() {
+    modal1.close()
+}
 function getEmail() {
     return document.getElementById("email").value;
 }
