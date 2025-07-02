@@ -213,8 +213,10 @@ async function modificarJuego(modificar){
         body: JSON.stringify(modificar)
     })
     console.log("Juego modificado")
-    alert("El juego se ha modificado correctamente")
+    document.getElementById('IdParaModificar').innerText = `ID: ${idParaModificar}`
+    document.getElementById('IdModNombre').innerText = `Nombre: ${modificar.game_name}`
+    document.getElementById('IdCantDesc').innerText = `Cantidad de descargas: ${modificar.cant_descargas}`
+    document.getElementById('IdImagenModificar').src = `${modificar.imagen}`
 }
-
 
 

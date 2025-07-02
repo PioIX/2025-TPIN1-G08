@@ -138,5 +138,6 @@ async function cambiarJuego(){
     alert("La URL de imagen no es válida. Se usará una imagen por defecto.");
     modificar.imagen = "https://i.pinimg.com/736x/5d/e6/09/5de609b28d7230fb7669ff3810951873.jpg";
   }
-    modificarJuego(modificar)
+    modificarJuego(modificar )
+    checkearJuego()
   }
