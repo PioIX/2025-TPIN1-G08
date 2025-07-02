@@ -89,7 +89,7 @@
   <button class="boton-play2" onclick="mostrarJuego()">JUGAR</button>
 </div>
 <!-- Modal para Modificar Juego -->
-<div id="modal-modificar-juego" class="modal" style="display: none;">
+<dialog id="modal-modificar-juego" class="modal" style="display: none;">
   <div class="modal-contenido">
     <h2>Modificar Juego</h2>
     <input type="text" id="mod-nombre" placeholder="Nuevo nombre del juego">
@@ -100,7 +100,25 @@
       <button onclick="administrar()">Cancelar</button>
     </div>
   </div>
+</dialog>
+
+<!-- Chequear juego -->
+<div class="chequear-juego" id="otro-panel" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <br>
+
+  <div class="juego-cambiado">
+    <!--agregar la img-->
+    <!--agregar id-->
+    <!--agregar nombre-->
+    <!--agregar cant de descargas-->
+  </div>
+
+  <button class="boton-play2" onclick="">Aceptar</button>
+  <button class="boton-play2" onclick="">Cancelar</button>
 </div>
+
+
   <!--pagina Juego-->
   <div class="pantalla-juego" id="juego" style="display: none;">
 <h2>¿QUIÉN TIENE MÁS DESCARGAS?</h2>
