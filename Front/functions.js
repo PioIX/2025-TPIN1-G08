@@ -68,6 +68,9 @@ function newGame(){
     if(getGameName() == "" | getCantDesc() == ""){
         return alert("por favor llene las casillas de agregar juego, la imagen no es necesaria")
     }
+    if(typeof getCantDesc() == "string"){
+      return alert("por favor llene la casilla de cantidad de descargas con un numero")
+  }
     if (!datos.imagen) {
         datos.imagen = "https://i.pinimg.com/736x/5d/e6/09/5de609b28d7230fb7669ff3810951873.jpg"
     }
@@ -117,7 +120,7 @@ function validarImagen(url) {
 async function cambiarJuego(){
   const games = await juegos();
   const imagenValida = await validarImagen(getModImg());
-    let modificar ={
+    let modificar ={  
         id_juego: idParaModificar,
         game_name: getModName(),
         cant_descargas: getModDownloads(),
