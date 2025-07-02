@@ -341,8 +341,13 @@ body {
   gap: 20px;
 }
 h1{
+<<<<<<< Updated upstream
   margin-top: 5px;
   margin-bottom: -10px;
+=======
+  margin-top: 50px;
+  margin-bottom: -36px;
+>>>>>>> Stashed changes
   color: #85f08b;
 }
 .admin-formulario {

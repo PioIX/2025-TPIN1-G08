@@ -5,6 +5,7 @@ function mostrarLogIn() {
     document.getElementById('modal-admin').style.display = 'none';
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'none'
 }
 
 function mostrarInicio() {
@@ -14,6 +15,7 @@ function mostrarInicio() {
     document.getElementById('modal-admin').style.display = 'none';
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'none'
 }
 
 function mostrarJuego() {
@@ -23,6 +25,7 @@ function mostrarJuego() {
     document.getElementById('modal-admin').style.display = 'none';
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'none'
 }
 function mostrarModal() {
     document.getElementById('inicio').style.display = 'none';
@@ -31,6 +34,7 @@ function mostrarModal() {
     document.getElementById('modal-admin').style.display = 'flex';
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'none'
 }
 function administrar(){
     document.getElementById('inicio').style.display = 'none';
@@ -39,8 +43,22 @@ function administrar(){
     document.getElementById('modal-admin').style.display = 'none';
     document.getElementById('admin').style.display = 'flex';
     document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'none'
 }
+<<<<<<< Updated upstream
 let idParaModificar = null
+=======
+function checkearJuego(){
+    document.getElementById('inicio').style.display = 'none';
+    document.getElementById('logIn').style.display = 'none';
+    document.getElementById('juego').style.display = 'none';
+    document.getElementById('modal-admin').style.display = 'none';
+    document.getElementById('admin').style.display = 'none';
+    document.getElementById('modal-modificar-juego').style.display = 'none';
+    document.getElementById('otro-panel').style.display = 'flex'
+}
+let idParaModificar = 0
+>>>>>>> Stashed changes
 async function modalCambiarJuego(){
     const games = await juegos();
     let id_juego = getIdJuego()
@@ -49,6 +67,7 @@ async function modalCambiarJuego(){
     }
     for (let i = 0; i < games.length; i++) {
         if (games[i].id_juego == id_juego) {
+            console.log("HOLAAA", id_juego)
             idParaModificar = id_juego
             document.getElementById('inicio').style.display = 'none';
             document.getElementById('logIn').style.display = 'none';
