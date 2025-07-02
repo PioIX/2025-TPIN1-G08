@@ -45,9 +45,7 @@ function administrar(){
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
 }
-<<<<<<< Updated upstream
-let idParaModificar = null
-=======
+
 function checkearJuego(){
     document.getElementById('inicio').style.display = 'none';
     document.getElementById('logIn').style.display = 'none';
@@ -57,8 +55,7 @@ function checkearJuego(){
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'flex'
 }
-let idParaModificar = 0
->>>>>>> Stashed changes
+let idParaModificar = null
 async function modalCambiarJuego(){
     const games = await juegos();
     let id_juego = getIdJuego()
@@ -81,7 +78,13 @@ async function modalCambiarJuego(){
     alert("El id no existe");
     
 }
-
+let modal1 = document.getElementById("modal-modificar-juego")
+function openmodal() {
+    modal1.showModal()
+}
+function closemodal() {
+    modal1.close()
+}
 function getEmail() {
     return document.getElementById("email").value;
 }
