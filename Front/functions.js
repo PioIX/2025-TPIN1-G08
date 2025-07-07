@@ -141,3 +141,14 @@ async function cambiarJuego(){
     modificarJuego(modificar )
     checkearJuego()
   }
+
+async function juegoAleatorio() {
+  const games = await juegos();
+  let numeroRandom1 = getRandomInt(games.length)   //no funciona el get random int, fijarse como hacer un numero random
+  let numeroRandom2 = getRandomInt(games.length)
+  while(numeroRandom1 = numeroRandom2){
+    numeroRandom2 = getRandomInt(games.length)
+  }
+  mostrarImagenes(numeroRandom1, numeroRandom2)
+}
+
