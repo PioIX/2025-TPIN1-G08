@@ -100,7 +100,7 @@ body {
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.5s ease, transform 0.5s ease;
+  transition: background-color 0.4s ease, transform 0.4s ease;
 }
 
 .boton-play:hover {
@@ -191,7 +191,6 @@ body {
   transform: scale(1.10);
   background-color: #009e4f;
 }
-
 /* Pantalla de Juego */
 
 .pantalla-juego {
@@ -383,7 +382,7 @@ h1{
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
   box-shadow: none;
   background-image: none;
   margin-top: -5px;
