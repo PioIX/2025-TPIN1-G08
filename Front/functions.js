@@ -142,13 +142,39 @@ async function cambiarJuego(){
     checkearJuego()
   }
 
+  function numeroAleatorioEntre(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 async function juegoAleatorio() {
   const games = await juegos();
-  let numeroRandom1 = getRandomInt(games.length)   //no funciona el get random int, fijarse como hacer un numero random
-  let numeroRandom2 = getRandomInt(games.length)
-  while(numeroRandom1 = numeroRandom2){
-    numeroRandom2 = getRandomInt(games.length)
+  let numeroRandom1 = numeroAleatorioEntre(0, games.length -1)
+  let numeroRandom2 = numeroAleatorioEntre(0, games.length -1)
+  while(numeroRandom1 == numeroRandom2){
+    numeroRandom2 = numeroAleatorioEntre(0, games.length -1)
   }
-  mostrarImagenes(numeroRandom1, numeroRandom2)
+  console.log(numeroRandom1)
+  console.log(numeroRandom2)
+  mostrarJuegos(numeroRandom1, numeroRandom2)
 }
 
+async function mostrarJuegos(numeroRandom1,numeroRandom2) {
+  const games = await juegos();
+ for (let i = 0; i < games.length; i++) {
+  if (games[i].id_juego == numeroRandom1) {
+      imagen1 = games[i].imagen
+      nombre1 = games[i].game_name
+  }
+}
+for (let i = 0; i < games.length; i++) {
+  if (games[i].id_juego == numeroRandom2) {
+      imagen2 = games[i].imagen
+      nombre2 = games[i].game_name
+  }
+}
+
+document.getElementById('IdImagenJuego1').src = `${imagen1}`
+document.getElementById('IdImagenJuego2').src = `${imagen2}`
+document.getElementById('IdModNombrejuego1').innerText = `${nombre1}`
+document.getElementById('IdModNombrejuego2').innerText = `${nombre2}`
+}
