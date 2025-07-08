@@ -83,7 +83,7 @@ async function eliminarUsuario(id_user){
         },
         body: JSON.stringify({ id_usuario: id_user })
     })
-    usuario_eliminar = (await result).json()
+    usuario_eliminar = await result.json()
     alert("El usuario ha sido eliminado correctamente")
 }
 
@@ -104,3 +104,18 @@ async function modificarJuego(modificar){
 }
 
 
+async function mostrarImagenes(numeroRandom1,numeroRandom2) {
+   const games = await juegos();
+   for (let i = 0; i < games.length; i++) {
+    if (games[i].id_juego == numeroRandom1) {
+        imagen1 = games.imagen
+    }
+}
+for (let i = 0; i < games.length; i++) {
+    if (games[i].id_juego == numeroRandom2) {
+        imagen2 = games.imagen
+    }
+}
+  document.getElementById('IdImagenJuego1').src = `${imagen1}`
+  document.getElementById('IdImagenJuego2').src = `${imagen2}`
+}
