@@ -101,7 +101,6 @@ body {
   border-radius: 30px;
   cursor: pointer;
   transition: background-color 0.4s ease, transform 0.4s ease;
-
 }
 
 .boton-play:hover {
@@ -186,7 +185,7 @@ body {
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3 ease;
-} 
+}
 
 .botones button:hover {
   transform: scale(1.10);
@@ -340,7 +339,8 @@ body {
   gap: 20px;
 }
 h1{
-  margin-top: 5px;
+
+  margin-top: 50px;
   margin-bottom: -36px;
   color: #85f08b;
 }

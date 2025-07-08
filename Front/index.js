@@ -1,119 +1,3 @@
-// Punto 1
-/*async function llenarTabla(){
-    let tabla = document.getElementById("tabla").innerHTML
-    let result = await fetch('http://localhost:4001/padres',{
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-    let padres = await result.json()
-    for (i = 0; i < padres.length; i++){
-        tabla += `<tr>
-        <td>${padres[i].dni_padre}</td>
-        <td>${padres[i].dni_madre}</td>
-        <td>${padres[i].apellido_padre}</td>
-        <td>${padres[i].apellido_madre}</td>
-        </tr>`
-    }
-    document.getElementById("tabla").innerHTML = tabla;
-}
-
-// Punto 2
-async function agregarPadre(datos){
-    let tabla = document.getElementById("tabla").innerHTML
-        response = await fetch(`http://localhost:4001/insertarpadres`,{
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(datos) //JSON.stringify me convierte de objeto a JSON
-        })
-        //Desarmo el JSON y pasa a ser un objeto
-        let padres = await response.json()
-        console.log(padres)
-    for (i = 0; i < padres.length; i++){
-        tabla += `<tr>
-        <td>${padres[i].dni_padre}</td>
-        <td>${padres[i].dni_madre}</td>
-        <td>${padres[i].apellido_padre}</td>
-        <td>${padres[i].apellido_madre}</td>
-        </tr>`
-    }
-    document.getElementById("tabla").innerHTML = tabla;
-}
-
-// Punto 3
-async function idsPadres() {
-    let select = document.getElementById("eliminar").innerHTML
-    response = await fetch('http://localhost:4001/padres',{
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-    let padres = await response.json()
-    console.log(padres)
-    for (i=0; i<padres.length;i++){
-        select += `<option>${padres[i].dni_padre}</option>`
-    }
-    document.getElementById("eliminar").innerHTML = select;
-} 
-
-async function eliminarPadre(){
-    const select = document.getElementById("eliminar");
-    const dniSeleccionado = select.value;
-    response = await fetch('http://localhost:4001/eliminarpadre',{
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ dni_padre: dniSeleccionado })
-    })
-}
-
-// Punto 4
-async function idsPadres2() {
-    let select = document.getElementById("cambiar").innerHTML
-    response = await fetch('http://localhost:4001/padres',{
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-    let padres = await response.json()
-    console.log(padres)
-    for (i=0; i<padres.length;i++){
-        select += `<option>${padres[i].dni_padre}</option>`
-    }
-    document.getElementById("cambiar").innerHTML = select;
-} 
-async function cambiarDato(){
-    const dniSeleccionado = document.getElementById("cambiar").value;
-    const nuevoapellidopadre = document.getElementById("nuevoapellidopadre").value
-    const datos2 = {
-        dni_padre: dniSeleccionado,
-        apellido_padre: nuevoapellidopadre,
-    };
-    response = await fetch('http://localhost:4001/modificarpadre',{
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(datos2)
-    })
-    console.log("Hola")
-}
-function obtenerDatos(){
-    let datos = {
-        dni_padre: getDniPadre(),
-        dni_madre: getDniMadre(),
-        apellido_padre: getApellidopadre(),
-        apellido_madre: getApellidomadre()
-    }
-    agregarPadre(datos)
-}*/
-
 //Trae a todos users
 async function usuarios() {
     let result = await fetch('http://localhost:4000/usuarios',{
@@ -199,7 +83,7 @@ async function eliminarUsuario(id_user){
         },
         body: JSON.stringify({ id_usuario: id_user })
     })
-    usuario_eliminar = (await result).json()
+    usuario_eliminar = await result.json()
     alert("El usuario ha sido eliminado correctamente")
 }
 
@@ -213,8 +97,25 @@ async function modificarJuego(modificar){
         body: JSON.stringify(modificar)
     })
     console.log("Juego modificado")
-    alert("El juego se ha modificado correctamente")
+    document.getElementById('IdParaModificar').innerText = `ID: ${idParaModificar}`
+    document.getElementById('IdModNombre').innerText = `Nombre: ${modificar.game_name}`
+    document.getElementById('IdCantDesc').innerText = `Cantidad de descargas: ${modificar.cant_descargas}`
+    document.getElementById('IdImagenModificar').src = `${modificar.imagen}`
 }
 
 
-
+async function mostrarImagenes(numeroRandom1,numeroRandom2) {
+   const games = await juegos();
+   for (let i = 0; i < games.length; i++) {
+    if (games[i].id_juego == numeroRandom1) {
+        imagen1 = games.imagen
+    }
+}
+for (let i = 0; i < games.length; i++) {
+    if (games[i].id_juego == numeroRandom2) {
+        imagen2 = games.imagen
+    }
+}
+  document.getElementById('IdImagenJuego1').src = `${imagen1}`
+  document.getElementById('IdImagenJuego2').src = `${imagen2}`
+}
