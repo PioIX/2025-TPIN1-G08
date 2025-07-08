@@ -100,11 +100,8 @@ body {
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-<<<<<<< Updated upstream
-  transition: background-color 0.5s ease, transform 0.5s ease;
-=======
-  transition: background-color 0.3s;
->>>>>>> Stashed changes
+  transition: background-color 0.4s ease, transform 0.4s ease;
+
 }
 
 .boton-play:hover {
@@ -188,18 +185,13 @@ body {
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-<<<<<<< Updated upstream
   transition: background-color 0.3s ease, transform 0.3 ease;
-=======
-  transition: background-color 0.3s;
->>>>>>> Stashed changes
-}
+} 
 
 .botones button:hover {
   transform: scale(1.10);
   background-color: #009e4f;
 }
-
 /* Pantalla de Juego */
 
 .pantalla-juego {
@@ -390,7 +382,7 @@ h1{
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
   box-shadow: none;
   background-image: none;
   margin-top: -5px;
