@@ -164,6 +164,7 @@ async function mostrarJuegos(numeroRandom1,numeroRandom2) {
   if (games[i].id_juego == numeroRandom1) {
       imagen1 = games[i].imagen
       nombre1 = games[i].game_name
+      cantDesc1 = games[i].cant_descargas
   }
 }
 for (let i = 0; i < games.length; i++) {
@@ -177,4 +178,20 @@ document.getElementById('IdImagenJuego1').src = `${imagen1}`
 document.getElementById('IdImagenJuego2').src = `${imagen2}`
 document.getElementById('IdModNombrejuego1').innerText = `${nombre1}`
 document.getElementById('IdModNombrejuego2').innerText = `${nombre2}`
+document.getElementById('idCantDescargas').innerText = `${cantDesc1} Descargas`
+}
+
+
+async function continuarJuego() {
+  const games = await juegos();
+  document.getElementById('IdImagenJuego1').src = `${document.getElementById('IdImagenJuego2').src}`
+  document.getElementById('IdModNombrejuego1').innerText = `${document.getElementById('IdModNombrejuego2').innerText}`
+  let numeroRand2 = numeroAleatorioEntre(0, games.length -1)
+  console.log(numeroRand2)
+  console.log(document.getElementById('IdModNombrejuego1').innerText)
+  while(document.getElementById('IdModNombrejuego1').innerText == `${games[numeroRand2].game_name}`){
+    numeroRand2 = numeroAleatorioEntre(0, games.length -1)
+  }
+  document.getElementById('IdImagenJuego2').src = `${games[numeroRand2].imagen}`
+  document.getElementById('IdModNombrejuego2').innerText = `${games[numeroRand2].game_name}`
 }
