@@ -171,14 +171,15 @@ for (let i = 0; i < games.length; i++) {
   if (games[i].id_juego == numeroRandom2) {
       imagen2 = games[i].imagen
       nombre2 = games[i].game_name
+      cantDesc2 = games[i].cant_descargas
   }
 }
-
 document.getElementById('IdImagenJuego1').src = `${imagen1}`
 document.getElementById('IdImagenJuego2').src = `${imagen2}`
 document.getElementById('IdModNombrejuego1').innerText = `${nombre1}`
 document.getElementById('IdModNombrejuego2').innerText = `${nombre2}`
 document.getElementById('idCantDescargas').innerText = `${cantDesc1} Descargas`
+document.getElementById('idCantDescargas2').innerText = `${cantDesc2} Descargas`
 }
 
 
@@ -186,6 +187,7 @@ async function continuarJuego() {
   const games = await juegos();
   document.getElementById('IdImagenJuego1').src = `${document.getElementById('IdImagenJuego2').src}`
   document.getElementById('IdModNombrejuego1').innerText = `${document.getElementById('IdModNombrejuego2').innerText}`
+  document.getElementById('idCantDescargas').innerText = `${document.getElementById('idCantDescargas2').innerText}`
   let numeroRand2 = numeroAleatorioEntre(0, games.length -1)
   console.log(numeroRand2)
   console.log(document.getElementById('IdModNombrejuego1').innerText)
@@ -194,4 +196,27 @@ async function continuarJuego() {
   }
   document.getElementById('IdImagenJuego2').src = `${games[numeroRand2].imagen}`
   document.getElementById('IdModNombrejuego2').innerText = `${games[numeroRand2].game_name}`
+  document.getElementById('idCantDescargas2').innerText = `${games[numeroRand2].cant_descargas} Descargas`
+
+  document.getElementById('idCantDescargas2').style.display = 'none'
+  
+}
+async function mostrarDesc1(){ //juego 1 tiene mas descargas
+  const games = await juegos();
+  document.getElementById('idCantDescargas2').style.display = 'flex'
+  if (document.getElementById('idCantDescargas').innerText >= document.getElementById('idCantDescargas2').innerText){
+    continuarJuego() // hacer q esta funcion tarde en ejecutarse unos segs
+  }else{
+    // hacer q salga un modal q diga "perdiste", que tenga una puntuacion max del jugador y la puntuacion q se saco en esta partida y un boton de volver a jugar
+  }
+}
+
+async function mostrarDesc2(){ //juego 2 tiene mas descargas
+  const games = await juegos();
+  document.getElementById('idCantDescargas2').style.display = 'flex'
+  if (document.getElementById('idCantDescargas').innerText <= document.getElementById('idCantDescargas2').innerText){
+    continuarJuego() // hacer q esta funcion tarde en ejecutarse unos segs
+  }else{
+    // hacer q salga un modal q diga "perdiste", que tenga una puntuacion max del jugador y la puntuacion q se saco en esta partida y un boton de volver a jugar
+  }
 }
