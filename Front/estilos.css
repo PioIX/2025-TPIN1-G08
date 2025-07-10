@@ -396,7 +396,6 @@ body {
   gap: 20px;
 }
 h1{
-
   margin-top: 10px;
   margin-bottom: -50px;
   color: #85f08b;
@@ -504,4 +503,51 @@ h1{
   padding: 30px 20px;
   text-align: center;
   gap: 20px;
+}
+
+#IdImagenModificar {
+  width: 300px; 
+  height: 300px; 
+  object-fit: cover; 
+  border-radius: 10px;
+  margin: 20px 0; 
+}
+.infoJuego{
+  color: #6ec072;
+}
+.botonAdmin2izq {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: #00d26a;
+  color: white;
+  border: none;
+  padding: 10.8px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+.botonAdmin2izq:hover {
+  transform: scale(1.05);
+  background-color: #009e4f;
+}
+.botonAdmin2der {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  background-color: #00d26a;
+  color: white;
+  border: none;
+  padding: 10.8px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+.botonAdmin2der:hover {
+  transform: scale(1.05);
+  background-color: #009e4f;
 }
