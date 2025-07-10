@@ -136,7 +136,7 @@
   <div class="juego-card izquierda">
     <div class="nombre-juego" id = "IdModNombrejuego1"></div>
     <img id="IdImagenJuego1" src="">
-    <div class="flecha roja">←</div>
+    <button onclick="mostrarDesc1()" class="flecha roja">←</button>
     <div class="nombre-juego" id = "idCantDescargas"></div>
   </div>
 
@@ -145,7 +145,8 @@
   <div class="juego-card derecha">
     <div class="nombre-juego" id = "IdModNombrejuego2"></div>
     <img id="IdImagenJuego2" src="">
-    <div class="flecha verde">→</div>
+    <button onclick="mostrarDesc2()" class="flecha verde">→</button>
+    <div class="nombre-juego" id = "idCantDescargas2" style="display: none;"></div>
   </div>
 </div>
 <script src = "dom.js"></script>
