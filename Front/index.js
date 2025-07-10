@@ -89,13 +89,15 @@ async function eliminarUsuario(id_user){
 
 //Modificar juego
 async function modificarJuego(modificar){
-    let result = await fetch('http://localhost:4000/modificarjuego',{
+    await fetch('http://localhost:4000/modificarjuego',{
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(modificar)
+
     })
+   
     console.log("Juego modificado")
     document.getElementById('IdParaModificar').innerText = `ID: ${idParaModificar}`
     document.getElementById('IdModNombre').innerText = `Nombre: ${modificar.game_name}`
@@ -104,18 +106,3 @@ async function modificarJuego(modificar){
 }
 
 
-async function mostrarImagenes(numeroRandom1,numeroRandom2) {
-   const games = await juegos();
-   for (let i = 0; i < games.length; i++) {
-    if (games[i].id_juego == numeroRandom1) {
-        imagen1 = games.imagen
-    }
-}
-for (let i = 0; i < games.length; i++) {
-    if (games[i].id_juego == numeroRandom2) {
-        imagen2 = games.imagen
-    }
-}
-  document.getElementById('IdImagenJuego1').src = `${imagen1}`
-  document.getElementById('IdImagenJuego2').src = `${imagen2}`
-}

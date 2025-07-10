@@ -64,7 +64,7 @@ async function modalCambiarJuego(){
     }
     for (let i = 0; i < games.length; i++) {
         if (games[i].id_juego == id_juego) {
-            console.log("HOLAAA", id_juego)
+            console.log(id_juego)
             idParaModificar = id_juego
             document.getElementById('inicio').style.display = 'none';
             document.getElementById('logIn').style.display = 'none';
