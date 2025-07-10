@@ -78,13 +78,13 @@ async function modalCambiarJuego(){
     alert("El id no existe");
     
 }
-let modal1 = document.getElementById("modal-modificar-juego")
+/*let modal1 = document.getElementById("modal-modificar-juego")
 function openmodal() {
     modal1.showModal()
 }
 function closemodal() {
     modal1.close()
-}
+}*/
 function getEmail() {
     return document.getElementById("email").value;
 }
