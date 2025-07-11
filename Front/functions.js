@@ -1,4 +1,4 @@
-
+let mailActual = null
 async function checkLogIn(email, contraseña) {
   const users = await usuarios()
   for (let i = 0; i < users.length; i++){
@@ -32,8 +32,10 @@ async function logIn(){
 if(idLogged > 0){
   if(idLogged == 1){
     mostrarModal()
+    mailActual = email
   }else{
     mostrarJuego()
+    mailActual = email
   }
 }else if(idLogged == -2){
   alert("El email no coincide")
@@ -53,6 +55,7 @@ async function registrarse(){
   if(idLogged == -2){
     nuevosDatosUser()
     mostrarJuego()
+    mailActual = email
   } else  {
     alert("El email ya ha sido utilizado")
   }
@@ -142,6 +145,8 @@ async function cambiarJuego(){
     checkearJuego()
   }
 
+let puntajeActual = 0
+
   function numeroAleatorioEntre(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
@@ -174,6 +179,10 @@ for (let i = 0; i < games.length; i++) {
       cantDesc2 = games[i].cant_descargas
   }
 }
+document.getElementById('idEspacio1').style.display = 'flex'
+document.getElementById('idEspacio2').style.display = 'flex'
+document.getElementById('idEspacio3').style.display = 'flex'
+document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`
 document.getElementById('IdImagenJuego1').src = `${imagen1}`
 document.getElementById('IdImagenJuego2').src = `${imagen2}`
 document.getElementById('IdModNombrejuego1').innerText = `${nombre1}`
@@ -199,24 +208,70 @@ async function continuarJuego() {
   document.getElementById('idCantDescargas2').innerText = `${games[numeroRand2].cant_descargas} Descargas`
 
   document.getElementById('idCantDescargas2').style.display = 'none'
+  document.getElementById('idEspacio1').style.display = 'flex'
+  document.getElementById('idEspacio2').style.display = 'flex'
+  document.getElementById('idEspacio3').style.display = 'flex'
   
 }
-async function mostrarDesc1(){ //juego 1 tiene mas descargas
+async function mostrarDesc1(){ // si juego 1 tiene mas descargas
   const games = await juegos();
   document.getElementById('idCantDescargas2').style.display = 'flex'
-  if (document.getElementById('idCantDescargas').innerText >= document.getElementById('idCantDescargas2').innerText){
-    continuarJuego() // hacer q esta funcion tarde en ejecutarse unos segs
-  }else{
-    // hacer q salga un modal q diga "perdiste", que tenga una puntuacion max del jugador y la puntuacion q se saco en esta partida y un boton de volver a jugar
+  document.getElementById('idEspacio1').style.display = 'none'
+  document.getElementById('idEspacio2').style.display = 'none'
+  document.getElementById('idEspacio3').style.display = 'none'
+  if (document.getElementById('idCantDescargas').innerText >= document.getElementById('idCantDescargas2').innerText) {
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+    puntajeActual += 1;
+    document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
+    // falta poner una img de un tilde verde cuando es correcto
+  setTimeout(() => {
+    document.getElementById('flechaRoja').disabled = false;
+    document.getElementById('flechaVerde').disabled = false;
+    document.getElementById('idCantDescargas2').style.display = 'none';
+    continuarJuego();
+  }, 2000); // 1000 milisegundos = 1 segundos
+}else{
+    document.getElementById("modalPerdiste").style.display = "flex";
+    document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
+    puntajeActual = 0
+    const users = await usuarios(); 
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].email == mailActual) {
+      document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
+    }
+   }
   }
 }
 
-async function mostrarDesc2(){ //juego 2 tiene mas descargas
+async function mostrarDesc2(){ // si juego 2 tiene mas descargas
   const games = await juegos();
   document.getElementById('idCantDescargas2').style.display = 'flex'
+  document.getElementById('idEspacio1').style.display = 'none'
+  document.getElementById('idEspacio2').style.display = 'none'
+  document.getElementById('idEspacio3').style.display = 'none'
   if (document.getElementById('idCantDescargas').innerText <= document.getElementById('idCantDescargas2').innerText){
-    continuarJuego() // hacer q esta funcion tarde en ejecutarse unos segs
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+    puntajeActual += 1;
+    document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
+    // falta poner una img de un tilde verde cuando es correcto
+    setTimeout(() => {
+    document.getElementById('flechaRoja').disabled = false;
+    document.getElementById('flechaVerde').disabled = false;
+    document.getElementById('idCantDescargas2').style.display = 'none';
+    continuarJuego();
+  }, 2000); // 1000 milisegundos = 1 segundos
+  
   }else{
-    // hacer q salga un modal q diga "perdiste", que tenga una puntuacion max del jugador y la puntuacion q se saco en esta partida y un boton de volver a jugar
+    document.getElementById("modalPerdiste").style.display = "flex";
+    document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
+    puntajeActual = 0
+    const users = await usuarios();
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].email == mailActual) {
+      document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
+    }
+   }
   }
 }
