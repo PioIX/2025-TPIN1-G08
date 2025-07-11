@@ -551,3 +551,42 @@ h1{
   transform: scale(1.05);
   background-color: #009e4f;
 }
+/* modal perdiste */
+.modal-perdiste { 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background-color: white;
+  padding: 30px;
+  margin-top: -200px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.modal-contenido h2 {
+  margin-bottom: 10px;
+}
+
+.modal-contenido button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-contenido button:hover {
+  background-color: #45a049;
+}

@@ -6,6 +6,7 @@ function mostrarLogIn() {
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
+    document.getElementById("modalPerdiste").style.display = "none";
 }
 
 function mostrarInicio() {
@@ -16,6 +17,7 @@ function mostrarInicio() {
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
+    document.getElementById("modalPerdiste").style.display = "none";
 }
 
 function mostrarJuego() {
@@ -26,6 +28,8 @@ function mostrarJuego() {
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
+    document.getElementById("modalPerdiste").style.display = "none";
+    document.getElementById('idCantDescargas2').style.display = 'none'
 }
 function mostrarModal() {
     document.getElementById('inicio').style.display = 'none';
@@ -35,6 +39,7 @@ function mostrarModal() {
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
+    document.getElementById("modalPerdiste").style.display = "none";
 }
 function administrar(){
     document.getElementById('inicio').style.display = 'none';
@@ -44,6 +49,7 @@ function administrar(){
     document.getElementById('admin').style.display = 'flex';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
+    document.getElementById("modalPerdiste").style.display = "none";
 }
 
 function checkearJuego(){
@@ -54,6 +60,7 @@ function checkearJuego(){
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'flex'
+    document.getElementById("modalPerdiste").style.display = "none";
 }
 let idParaModificar = null
 async function modalCambiarJuego(){
@@ -72,6 +79,7 @@ async function modalCambiarJuego(){
             document.getElementById('modal-admin').style.display = 'none';
             document.getElementById('admin').style.display = 'none';
             document.getElementById('modal-modificar-juego').style.display = 'flex';
+            document.getElementById("modalPerdiste").style.display = "none";
             return 1
         }
     }
