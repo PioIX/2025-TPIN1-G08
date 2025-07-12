@@ -30,6 +30,8 @@ function mostrarJuego() {
     document.getElementById('otro-panel').style.display = 'none'
     document.getElementById("modalPerdiste").style.display = "none";
     document.getElementById('idCantDescargas2').style.display = 'none'
+    document.getElementById('IdImagenRespuesta').style.display = 'none';
+    document.getElementById("idVs").style.display = "flex";
 }
 function mostrarModal() {
     document.getElementById('inicio').style.display = 'none';

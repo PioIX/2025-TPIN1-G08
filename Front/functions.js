@@ -224,23 +224,44 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
     document.getElementById('flechaVerde').disabled = true;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
-    // falta poner una img de un tilde verde cuando es correcto
+    if (document.getElementById('idCantDescargas').innerText > document.getElementById('idCantDescargas2').innerText){
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    }else{
+      document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.freepik.com/512/16322/16322571.png`
+      document.getElementById('IdImagenRespuesta').style.display = 'flex'
+      document.getElementById("idVs").style.display = "none";
+    }
   setTimeout(() => {
     document.getElementById('flechaRoja').disabled = false;
     document.getElementById('flechaVerde').disabled = false;
     document.getElementById('idCantDescargas2').style.display = 'none';
+    document.getElementById('IdImagenRespuesta').style.display = 'none';
+    document.getElementById("idVs").style.display = "flex";
     continuarJuego();
   }, 2000); // 1000 milisegundos = 1 segundos
 }else{
-    document.getElementById("modalPerdiste").style.display = "flex";
-    document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
-    puntajeActual = 0
-    const users = await usuarios(); 
-  for (let i = 0; i < users.length; i++) {
+    const users = await usuarios();
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/11379/11379029.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+     setTimeout(() => {
+      document.getElementById('flechaRoja').disabled = false;
+      document.getElementById('flechaVerde').disabled = false;
+      document.getElementById("modalPerdiste").style.display = "flex";
+      document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
+      puntajeActual = 0
+      document.getElementById('IdImagenRespuesta').style.display = 'none';
+      document.getElementById("idVs").style.display = "flex";
+    for (let i = 0; i < users.length; i++) {
     if (users[i].email == mailActual) {
       document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
     }
    }
+  }, 2000);
   }
 }
 
@@ -255,23 +276,47 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
     document.getElementById('flechaVerde').disabled = true;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
-    // falta poner una img de un tilde verde cuando es correcto
+    if (document.getElementById('idCantDescargas').innerText < document.getElementById('idCantDescargas2').innerText){
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    
+    }else{
+      document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.freepik.com/512/16322/16322571.png`
+      document.getElementById('IdImagenRespuesta').style.display = 'flex'
+      document.getElementById("idVs").style.display = "none";
+    }
     setTimeout(() => {
     document.getElementById('flechaRoja').disabled = false;
     document.getElementById('flechaVerde').disabled = false;
     document.getElementById('idCantDescargas2').style.display = 'none';
+    document.getElementById('IdImagenRespuesta').style.display = 'none';
+    document.getElementById("idVs").style.display = "flex";
     continuarJuego();
   }, 2000); // 1000 milisegundos = 1 segundos
   
   }else{
-    document.getElementById("modalPerdiste").style.display = "flex";
-    document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
-    puntajeActual = 0
     const users = await usuarios();
-  for (let i = 0; i < users.length; i++) {
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/11379/11379029.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+     setTimeout(() => {
+      document.getElementById('flechaRoja').disabled = false;
+      document.getElementById('flechaVerde').disabled = false;
+      document.getElementById("modalPerdiste").style.display = "flex";
+      document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
+      puntajeActual = 0
+      document.getElementById('IdImagenRespuesta').style.display = 'none';
+      document.getElementById("idVs").style.display = "flex";
+    for (let i = 0; i < users.length; i++) {
     if (users[i].email == mailActual) {
       document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
     }
    }
+  }, 2000);
+  
   }
 }
+
