@@ -590,3 +590,7 @@ h1{
 .modal-contenido button:hover {
   background-color: #45a049;
 }
+
+.IdImagenRespuesta{
+  width: 65px;
+}
