@@ -108,3 +108,14 @@ app.put('/modificarjuego', async function(req,res){
         res.send(error.message)
     }
 })
+
+app.put('/modificarpuntaje', async function (req, res){
+    try {
+        console.log(req.body)
+        await realizarQuery(`
+            UPDATE Usuarios SET puntaje_max = ${req.body.puntaje_max}
+            `)
+    } catch (error){
+        res.send(error.message)
+    }
+})

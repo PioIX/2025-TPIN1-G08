@@ -106,3 +106,14 @@ async function modificarJuego(modificar){
 }
 
 
+async function modificarPuntaje(nuevopuntaje){
+    let result = await fetch('http://localhost:4000/modificarpuntaje',{
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(nuevopuntaje)
+    })
+    console.log("Puntaje modificado")
+    alert("El puntaje se ha modificado correctamente")
+}
