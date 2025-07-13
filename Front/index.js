@@ -100,5 +100,15 @@ async function modificarJuego(modificar){
     alert("El juego se ha modificado correctamente")
 }
 
-
+//Modifica el puntaje maximo de un usuario
+async function modificarPuntaje(modificarPuntaje){
+    let result = await fetch('http://localhost:4000/modificarpuntajemaximo',{
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify(modificarPuntaje)
+    })
+    console.log("Puntaje actualizado")
+}
 
