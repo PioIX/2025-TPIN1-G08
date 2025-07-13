@@ -83,7 +83,7 @@ async function eliminarUsuario(id_user){
         },
         body: JSON.stringify({ id_usuario: id_user })
     })
-    usuario_eliminar = (await result).json()
+    usuario_eliminar = await result.json()
     alert("El usuario ha sido eliminado correctamente")
 }
 
