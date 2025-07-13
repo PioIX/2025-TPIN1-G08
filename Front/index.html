@@ -48,11 +48,12 @@
 
   <!-- Modal para Administrador -->
 <div id="modal-admin" class="modal" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
   <div class="modal-contenido">
     <h2>Bienvenido, Administrador</h2>
     <p>¿Qué desea hacer?</p>
     <div class="botones">
-      <button onclick="mostrarJuego()">Jugar</button>
+      <button onclick="juegoAleatorio(), mostrarJuego()">Jugar</button>
       <button onclick="administrar()">Administrar</button>
     </div>
   </div>
@@ -66,65 +67,115 @@
   <br>
 
   <div class="admin-formulario">
-  <input type="text" placeholder="Ingrese el nombre juego" id="game_name">
-    <input type="text" placeholder="Ingrese las cantidas de descarags" id="cantidad_descargas">
-    <input type="text" placeholder="Ingrese la direccion de imagen del juego" id="imagen_juego">
-    <button onclick="newGame()">Agregar juego</button>
+  <input type="text" placeholder="Ingrese el nombre juego" id="game_name" class="input2">
+    <input type="text" placeholder="Ingrese las cantidas de descarags" id="cantidad_descargas" class="input2">
+    <input type="text" placeholder="Ingrese la direccion de imagen del juego" id="imagen_juego" class="input2">
+    <button onclick="newGame()" class="botonAdmin">Agregar juego</button>
   </div>
 
   <div class="admin-formulario">
-    <input type="text" placeholder="Ingrese el id del juego que desea cambiar" id="id_juego">
-    <button onclick="modalCambiarJuego()">Modificar juego</button>
+    <input type="text" placeholder="Ingrese el id del juego que desea cambiar" id="id_juego" class="input3">
+    <button onclick="modalCambiarJuego()" class="botonAdmin">Modificar juego</button>
   </div>
 
   <div class="admin-formulario">
-    <input type="text" placeholder="Ingrese el ID del juego que desea eliminar" id="id_juego_eliminar">
-    <button onclick="idJuego()">Eliminar Juego</button>
+    <input type="text" placeholder="Ingrese el ID del juego que desea eliminar" id="id_juego_eliminar" class="input3">
+    <button onclick="idJuego()" class="botonAdmin">Eliminar Juego</button>
   </div>
 
   <div class="admin-formulario">
-    <input type="text" placeholder="Ingrese el ID del usuario que desea eliminar" id="id_user">
-    <button onclick="idUser()">Eliminar Usuario</button>
+    <input type="text" placeholder="Ingrese el ID del usuario que desea eliminar" id="id_user" class="input3">
+    <button onclick="idUser()" class="botonAdmin">Eliminar Usuario</button>
   </div>
-  <button class="boton-play2" onclick="mostrarJuego()">JUGAR</button>
+  <button class="boton-play2" onclick="juegoAleatorio(), mostrarJuego()">JUGAR</button>
 </div>
 <!-- Modal para Modificar Juego -->
-<div id="modal-modificar-juego" class="modal" style="display: none;">
+<dialog id="modal-modificar-juego" class="modal" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
   <div class="modal-contenido">
     <h2>Modificar Juego</h2>
     <input type="text" id="mod-nombre" placeholder="Nuevo nombre del juego">
     <input type="text" id="mod-descargas" placeholder="Nueva cantidad de descargas">
     <input type="text" id="mod-imagen" placeholder="Enlace de la imagen (escriba none si no hay)">
     <div class="botones">
-      <button onclick="cambiarJuego()">Guardar</button>
-      <button onclick="administrar()">Cancelar</button>
+      <button onclick="cambiarJuego()" class="botonAdmin">Guardar</button>
+      <button onclick="administrar()" class="botonAdmin">Cancelar</button>
     </div>
   </div>
+
+</dialog>
+
+<!-- Chequear juego -->
+<div class="chequear-juego" id="otro-panel" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <br>
+  <div class="juego-cambiado">
+    <h1>ASÍ QUEDA</h1>
+    <br><br><br><br><br>
+    <img id="IdImagenModificar" src="">
+    <h2 id="IdParaModificar" class="infoJuego"></h2>
+    <h2 id="IdModNombre" class="infoJuego"></h2>
+    <h2 id="IdCantDesc" class="infoJuego"></h2>
+  </div>
+  <div class="botones-juego-cambiado">
+  <button class="botonAdmin2izq" onclick="administrar()">Aceptar</button>
+  <button class="botonAdmin2der" onclick="modalCambiarJuego()">Volver a Modificar</button>
 </div>
+
+</div>
+
+
   <!--pagina Juego-->
   <div class="pantalla-juego" id="juego" style="display: none;">
 <h2>¿QUIÉN TIENE MÁS DESCARGAS?</h2>
 <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
-<!-- <img src="/Front/HIGHER.png" alt="Flechas" class="icono-flechas" />
-</div>-->
-
+<br>
+<br>
+<br>
 <div class="juego-contenedor">
   <div class="juego-card izquierda">
-    <div class="nombre-juego">Elden Ring</div>
-    <img src="https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg" class="imagen-juego" alt="Elden Ring">
-    <div class="flecha roja">←</div>
+    <div class="nombre-juego" id = "IdModNombrejuego1"></div>
+    <img id="IdImagenJuego1" src="">
+    <button onclick="mostrarDesc1()" class="flecha roja" id="flechaRoja">←</button>
+    <br>
+    <div class="nombre-juego" id = "idCantDescargas"></div>
+    
   </div>
-
-  <div class="versus">VS</div>
+   <div class="juego-central">
+    <div class="versus" id="IdPuntajeActual"></div>
+    <br>
+    <div class="versus" id="idVs" style="display: flex;" >VS</div>
+    <img id="IdImagenRespuesta" class="IdImagenRespuesta" src="" style="display: none;">
+  </div>
 
   <div class="juego-card derecha">
-    <div class="nombre-juego">StarCraft II</div>
-    <img src="https://upload.wikimedia.org/wikipedia/en/2/29/StarCraft_II_-_Box_Art.jpg" class="imagen-juego" alt="StarCraft II">
-    <div class="flecha verde">→</div>
+    <div class="nombre-juego" id = "IdModNombrejuego2"></div>
+    <img id="IdImagenJuego2" src="">
+    <button onclick="mostrarDesc2()" class="flecha verde" id="flechaVerde">→</button>
+    <br>
+    <div class="nombre-juego" id = "idCantDescargas2" style="display: none;"></div>
+    <br id="idEspacio1" style="display: flex;">
+    <br id="idEspacio2" style="display: flex;">
+    <br id="idEspacio3" style="display: flex;">
   </div>
 </div>
+<!-- Modal de "Perdiste" -->
+<div id="modalPerdiste" class="modal-perdiste" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <div class="modal-contenido">
+    <h2>¡Perdiste!</h2>
+    <br>
+    <h3 id="IdPuntajeMax"></h3>
+    <br>
+    <h3 id="IdPuntajeActual2"></h3>
+    <br>
+    <p>¿Querés intentarlo de nuevo?</p>
+    <br>
+    <button onclick="juegoAleatorio(), mostrarJuego()">Volver a jugar</button>
+  </div>
+</div>
+<script src = "dom.js"></script>
 <script src = "functions.js"></script>
 <script src = "index.js"></script>
-<script src = "dom.js"></script>
 </body>
 </html>

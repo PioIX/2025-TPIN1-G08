@@ -83,22 +83,28 @@ async function eliminarUsuario(id_user){
         },
         body: JSON.stringify({ id_usuario: id_user })
     })
-    usuario_eliminar = (await result).json()
+    usuario_eliminar = await result.json()
     alert("El usuario ha sido eliminado correctamente")
 }
 
 //Modificar juego
 async function modificarJuego(modificar){
-    let result = await fetch('http://localhost:4000/modificarjuego',{
+    await fetch('http://localhost:4000/modificarjuego',{
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(modificar)
+
     })
+   
     console.log("Juego modificado")
-    alert("El juego se ha modificado correctamente")
+    document.getElementById('IdParaModificar').innerText = `ID: ${idParaModificar}`
+    document.getElementById('IdModNombre').innerText = `Nombre: ${modificar.game_name}`
+    document.getElementById('IdCantDesc').innerText = `Cantidad de descargas: ${modificar.cant_descargas}`
+    document.getElementById('IdImagenModificar').src = `${modificar.imagen}`
 }
+
 
 async function modificarPuntaje(nuevopuntaje){
     let result = await fetch('http://localhost:4000/modificarpuntaje',{
@@ -111,4 +117,3 @@ async function modificarPuntaje(nuevopuntaje){
     console.log("Puntaje modificado")
     alert("El puntaje se ha modificado correctamente")
 }
-

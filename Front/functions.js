@@ -1,4 +1,4 @@
-
+let mailActual = null
 async function checkLogIn(email, contraseña) {
   const users = await usuarios()
   for (let i = 0; i < users.length; i++){
@@ -32,8 +32,10 @@ async function logIn(){
 if(idLogged > 0){
   if(idLogged == 1){
     mostrarModal()
+    mailActual = email
   }else{
     mostrarJuego()
+    mailActual = email
   }
 }else if(idLogged == -2){
   alert("El email no coincide")
@@ -53,6 +55,7 @@ async function registrarse(){
   if(idLogged == -2){
     nuevosDatosUser()
     mostrarJuego()
+    mailActual = email
   } else  {
     alert("El email ya ha sido utilizado")
   }
@@ -68,6 +71,9 @@ function newGame(){
     if(getGameName() == "" | getCantDesc() == ""){
         return alert("por favor llene las casillas de agregar juego, la imagen no es necesaria")
     }
+    if(typeof getCantDesc() == "string"){
+      return alert("por favor llene la casilla de cantidad de descargas con un numero")
+  }
     if (!datos.imagen) {
         datos.imagen = "https://i.pinimg.com/736x/5d/e6/09/5de609b28d7230fb7669ff3810951873.jpg"
     }
@@ -117,7 +123,7 @@ function validarImagen(url) {
 async function cambiarJuego(){
   const games = await juegos();
   const imagenValida = await validarImagen(getModImg());
-    let modificar ={
+    let modificar ={  
         id_juego: idParaModificar,
         game_name: getModName(),
         cant_descargas: getModDownloads(),
@@ -135,5 +141,182 @@ async function cambiarJuego(){
       alert("La URL de imagen no es válida. Se usará una imagen por defecto.");
       modificar.imagen = "https://i.pinimg.com/736x/5d/e6/09/5de609b28d7230fb7669ff3810951873.jpg";
   }
-    modificarJuego(modificar)
+    modificarJuego(modificar )
+    checkearJuego()
   }
+
+let puntajeActual = 0
+
+  function numeroAleatorioEntre(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+async function juegoAleatorio() {
+  const games = await juegos();
+  let numeroRandom1 = numeroAleatorioEntre(0, games.length -1)
+  let numeroRandom2 = numeroAleatorioEntre(0, games.length -1)
+  while(numeroRandom1 == numeroRandom2){
+    numeroRandom2 = numeroAleatorioEntre(0, games.length -1)
+  }
+  console.log(numeroRandom1)
+  console.log(numeroRandom2)
+  mostrarJuegos(numeroRandom1, numeroRandom2)
+}
+
+async function mostrarJuegos(numeroRandom1,numeroRandom2) {
+  const games = await juegos();
+ for (let i = 0; i < games.length; i++) {
+  if (games[i].id_juego == numeroRandom1) {
+      imagen1 = games[i].imagen
+      nombre1 = games[i].game_name
+      cantDesc1 = games[i].cant_descargas
+  }
+}
+for (let i = 0; i < games.length; i++) {
+  if (games[i].id_juego == numeroRandom2) {
+      imagen2 = games[i].imagen
+      nombre2 = games[i].game_name
+      cantDesc2 = games[i].cant_descargas
+  }
+}
+document.getElementById('idEspacio1').style.display = 'flex'
+document.getElementById('idEspacio2').style.display = 'flex'
+document.getElementById('idEspacio3').style.display = 'flex'
+document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`
+document.getElementById('IdImagenJuego1').src = `${imagen1}`
+document.getElementById('IdImagenJuego2').src = `${imagen2}`
+document.getElementById('IdModNombrejuego1').innerText = `${nombre1}`
+document.getElementById('IdModNombrejuego2').innerText = `${nombre2}`
+document.getElementById('idCantDescargas').innerText = `${cantDesc1} Descargas`
+document.getElementById('idCantDescargas2').innerText = `${cantDesc2} Descargas`
+}
+
+
+async function continuarJuego() {
+  const games = await juegos();
+  document.getElementById('IdImagenJuego1').src = `${document.getElementById('IdImagenJuego2').src}`
+  document.getElementById('IdModNombrejuego1').innerText = `${document.getElementById('IdModNombrejuego2').innerText}`
+  document.getElementById('idCantDescargas').innerText = `${document.getElementById('idCantDescargas2').innerText}`
+  let numeroRand2 = numeroAleatorioEntre(0, games.length -1)
+  console.log(numeroRand2)
+  console.log(document.getElementById('IdModNombrejuego1').innerText)
+  while(document.getElementById('IdModNombrejuego1').innerText == `${games[numeroRand2].game_name}`){
+    numeroRand2 = numeroAleatorioEntre(0, games.length -1)
+  }
+  document.getElementById('IdImagenJuego2').src = `${games[numeroRand2].imagen}`
+  document.getElementById('IdModNombrejuego2').innerText = `${games[numeroRand2].game_name}`
+  document.getElementById('idCantDescargas2').innerText = `${games[numeroRand2].cant_descargas} Descargas`
+
+  document.getElementById('idCantDescargas2').style.display = 'none'
+  document.getElementById('idEspacio1').style.display = 'flex'
+  document.getElementById('idEspacio2').style.display = 'flex'
+  document.getElementById('idEspacio3').style.display = 'flex'
+  
+}
+async function mostrarDesc1(){ // si juego 1 tiene mas descargas
+  const games = await juegos();
+  document.getElementById('idCantDescargas2').style.display = 'flex'
+  document.getElementById('idEspacio1').style.display = 'none'
+  document.getElementById('idEspacio2').style.display = 'none'
+  document.getElementById('idEspacio3').style.display = 'none'
+  if (document.getElementById('idCantDescargas').innerText >= document.getElementById('idCantDescargas2').innerText) {
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+    puntajeActual += 1;
+    document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
+    if (document.getElementById('idCantDescargas').innerText > document.getElementById('idCantDescargas2').innerText){
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    }else{
+      document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.freepik.com/512/16322/16322571.png`
+      document.getElementById('IdImagenRespuesta').style.display = 'flex'
+      document.getElementById("idVs").style.display = "none";
+    }
+  setTimeout(() => {
+    document.getElementById('flechaRoja').disabled = false;
+    document.getElementById('flechaVerde').disabled = false;
+    document.getElementById('idCantDescargas2').style.display = 'none';
+    document.getElementById('IdImagenRespuesta').style.display = 'none';
+    document.getElementById("idVs").style.display = "flex";
+    continuarJuego();
+  }, 2000); // 1000 milisegundos = 1 segundos
+}else{
+    const users = await usuarios();
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/11379/11379029.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+     setTimeout(() => {
+      document.getElementById('flechaRoja').disabled = false;
+      document.getElementById('flechaVerde').disabled = false;
+      document.getElementById("modalPerdiste").style.display = "flex";
+      document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
+      puntajeActual = 0
+      document.getElementById('IdImagenRespuesta').style.display = 'none';
+      document.getElementById("idVs").style.display = "flex";
+    for (let i = 0; i < users.length; i++) {
+    if (users[i].email == mailActual) {
+      document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
+    }
+   }
+  }, 2000);
+  }
+}
+
+async function mostrarDesc2(){ // si juego 2 tiene mas descargas
+  const games = await juegos();
+  document.getElementById('idCantDescargas2').style.display = 'flex'
+  document.getElementById('idEspacio1').style.display = 'none'
+  document.getElementById('idEspacio2').style.display = 'none'
+  document.getElementById('idEspacio3').style.display = 'none'
+  if (document.getElementById('idCantDescargas').innerText <= document.getElementById('idCantDescargas2').innerText){
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+    puntajeActual += 1;
+    document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
+    if (document.getElementById('idCantDescargas').innerText < document.getElementById('idCantDescargas2').innerText){
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    
+    }else{
+      document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.freepik.com/512/16322/16322571.png`
+      document.getElementById('IdImagenRespuesta').style.display = 'flex'
+      document.getElementById("idVs").style.display = "none";
+    }
+    setTimeout(() => {
+    document.getElementById('flechaRoja').disabled = false;
+    document.getElementById('flechaVerde').disabled = false;
+    document.getElementById('idCantDescargas2').style.display = 'none';
+    document.getElementById('IdImagenRespuesta').style.display = 'none';
+    document.getElementById("idVs").style.display = "flex";
+    continuarJuego();
+  }, 2000); // 1000 milisegundos = 1 segundos
+  
+  }else{
+    const users = await usuarios();
+    document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/11379/11379029.png`
+    document.getElementById('IdImagenRespuesta').style.display = 'flex'
+    document.getElementById("idVs").style.display = "none";
+    document.getElementById('flechaRoja').disabled = true;
+    document.getElementById('flechaVerde').disabled = true;
+     setTimeout(() => {
+      document.getElementById('flechaRoja').disabled = false;
+      document.getElementById('flechaVerde').disabled = false;
+      document.getElementById("modalPerdiste").style.display = "flex";
+      document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
+      puntajeActual = 0
+      document.getElementById('IdImagenRespuesta').style.display = 'none';
+      document.getElementById("idVs").style.display = "flex";
+    for (let i = 0; i < users.length; i++) {
+    if (users[i].email == mailActual) {
+      document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
+    }
+   }
+  }, 2000);
+  
+  }
+}
+

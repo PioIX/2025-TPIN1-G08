@@ -100,7 +100,7 @@ body {
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.5s ease, transform 0.5s ease;
+  transition: background-color 0.4s ease, transform 0.4s ease;
 }
 
 .boton-play:hover {
@@ -148,7 +148,7 @@ body {
   margin-bottom: 20px;
 }
 
-.login-box input {
+.input {
   width: 100%;
   padding: 15px;
   margin: 12px 0;
@@ -159,14 +159,71 @@ body {
   color: #333;
   transition: transform 0.3s ease;
 }
-.login-box input:hover {
+
+.input:hover {
   transform: scale(1.05);
 }
 
-.login-box input::placeholder {
+.input::placeholder {
   color: #888;
 }
 
+.input2 {
+  width: 100%;
+  padding: 15px;
+  margin: 0px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #dddddd;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.input2:hover {
+  transform: scale(1.05);
+}
+
+.input2::placeholder {
+  color: #888;
+}
+.input3 {
+  width: 100%;
+  padding: 15px;
+  margin-top: -5px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #dddddd;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.input3:hover {
+  transform: scale(1.05);
+}
+
+.input3::placeholder {
+  color: #888;
+}
+.botonAdmin {
+  display: inline-block;
+  margin-top: 5px;
+  background-color: #00d26a;
+  color: white;
+  border: none;
+  padding: 18px 50px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+.botonAdmin:hover {
+  transform: scale(1.05);
+  background-color: #009e4f;
+}
 .botones {
   display: flex;
   justify-content: space-around;
@@ -191,12 +248,11 @@ body {
   transform: scale(1.10);
   background-color: #009e4f;
 }
-
 /* Pantalla de Juego */
 
 .pantalla-juego {
   height: 100vh;
-  background: linear-gradient(to right, #c9f3dc, #aecff2);
+  background: linear-gradient(to right, #2f1349, #085ac5);;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -256,13 +312,13 @@ body {
   font-weight: bold;
 }
 
-.imagen-juego {
+#IdImagenJuego1, #IdImagenJuego2 {
   width: 100%;
-  border-radius: 50%;
+  border-radius: 10px;
   aspect-ratio: 1/1;
   object-fit: cover;
   margin-bottom: 15px;
-  border: 4px solid #000;
+  border: 3px solid #ffffff;
 }
 
 .flecha {
@@ -332,23 +388,22 @@ body {
 
 .pantalla-admin {
   height: 100vh;
- background: linear-gradient(to right, #2f1349, #085ac5);;
+  background: linear-gradient(to right, #2f1349, #085ac5);;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 20px;
   text-align: center;
   gap: 20px;
 }
 h1{
-  margin-top: 5px;
-  margin-bottom: -10px;
+  margin-top: 10px;
+  margin-bottom: -50px;
   color: #85f08b;
 }
 .admin-formulario {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1px;
   width: 100%;
   max-width: 400px;
 }
@@ -383,9 +438,14 @@ h1{
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   box-shadow: none;
   background-image: none;
+  margin-top: -5px;
+}
+.pantalla-admin .boton-play2:hover {
+  transform: scale(1.05);
+  background-color: #009e4f;
 }
 
 
@@ -430,4 +490,107 @@ h1{
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* Chequear juego */
+
+.chequear-juego {
+  height: 100vh;
+  background: linear-gradient(to right, #2f1349, #085ac5);;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px;
+  text-align: center;
+  gap: 20px;
+}
+
+#IdImagenModificar {
+  width: 300px; 
+  height: 300px; 
+  object-fit: cover; 
+  border-radius: 10px;
+  margin: 20px 0; 
+}
+.infoJuego{
+  color: #6ec072;
+}
+.botonAdmin2izq {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 5px;
+  background-color: #00d26a;
+  color: white;
+  border: none;
+  padding: 10.8px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+.botonAdmin2izq:hover {
+  transform: scale(1.05);
+  background-color: #009e4f;
+}
+.botonAdmin2der {
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px;
+  background-color: #00d26a;
+  color: white;
+  border: none;
+  padding: 10.8px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+.botonAdmin2der:hover {
+  transform: scale(1.05);
+  background-color: #009e4f;
+}
+/* modal perdiste */
+.modal-perdiste { 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background-color: white;
+  padding: 30px;
+  margin-top: -200px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.modal-contenido h2 {
+  margin-bottom: 10px;
+}
+
+.modal-contenido button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-contenido button:hover {
+  background-color: #45a049;
+}
+
+.IdImagenRespuesta{
+  width: 65px;
 }
