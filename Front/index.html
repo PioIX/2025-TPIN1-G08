@@ -53,8 +53,8 @@
     <h2>Bienvenido, Administrador</h2>
     <p>¿Qué desea hacer?</p>
     <div class="botones">
-      <button onclick="juegoAleatorio(), mostrarJuego()">Jugar</button>
-      <button onclick="administrar()">Administrar</button>
+      <button onclick="juegoAleatorio(), mostrarJuego()" class="botonAdmin">Jugar</button>
+      <button onclick="administrar()" class="botonAdmin">Administrar</button>
     </div>
   </div>
 </div>
@@ -133,10 +133,9 @@
 <br>
 <br>
 <div class="juego-contenedor">
-  <div class="juego-card izquierda">
+  <div class="juego-card izquierda" onclick="mostrarDesc1()" id="flechaRoja" >
     <div class="nombre-juego" id = "IdModNombrejuego1"></div>
     <img id="IdImagenJuego1" src="">
-    <button onclick="mostrarDesc1()" class="flecha roja" id="flechaRoja">←</button>
     <br>
     <div class="nombre-juego" id = "idCantDescargas"></div>
     
@@ -148,10 +147,9 @@
     <img id="IdImagenRespuesta" class="IdImagenRespuesta" src="" style="display: none;">
   </div>
 
-  <div class="juego-card derecha">
+  <div class="juego-card derecha" id="flechaVerde" onclick="mostrarDesc2()">
     <div class="nombre-juego" id = "IdModNombrejuego2"></div>
     <img id="IdImagenJuego2" src="">
-    <button onclick="mostrarDesc2()" class="flecha verde" id="flechaVerde">→</button>
     <br>
     <div class="nombre-juego" id = "idCantDescargas2" style="display: none;"></div>
     <br id="idEspacio1" style="display: flex;">
@@ -171,7 +169,7 @@
     <br>
     <p>¿Querés intentarlo de nuevo?</p>
     <br>
-    <button onclick="juegoAleatorio(), mostrarJuego()">Volver a jugar</button>
+    <button onclick="juegoAleatorio(), mostrarJuego()" class="botonAdmin">Volver a jugar</button>
   </div>
 </div>
 <script src = "dom.js"></script>
