@@ -112,8 +112,7 @@ async function modificarPuntaje(nuevopuntaje){
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(nuevopuntaje)
+        body: JSON.stringify({puntaje_max: nuevopuntaje, email: mailActual})
     })
-    console.log("Puntaje modificado")
-    alert("El puntaje se ha modificado correctamente")
+    console.log("El puntaje se ha modificado correctamente")
 }

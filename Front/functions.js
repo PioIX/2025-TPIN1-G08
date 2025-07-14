@@ -253,16 +253,35 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
       document.getElementById('flechaVerde').disabled = false;
       document.getElementById("modalPerdiste").style.display = "flex";
       document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
-      puntajeActual = 0
       document.getElementById('IdImagenRespuesta').style.display = 'none';
       document.getElementById("idVs").style.display = "flex";
-    for (let i = 0; i < users.length; i++) {
-    if (users[i].email == mailActual) {
-      document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
-    }
-   }
+      chequearPuntaje(users)
   }, 2000);
   }
+}
+
+function chequearPuntaje(users) {
+  console.log(users)
+    console.log(puntajeActual)
+    for (let i = 0; i < users.length; i++) {
+    if (users[i].email == mailActual) {
+      if (puntajeActual > users[i].puntaje_max){
+        console.log ("aaaa")
+        let puntajeNuevo = {
+          puntajeActual: puntajeActual
+        }
+         modificarPuntaje(puntajeNuevo)
+         document.getElementById('IdPuntajeMax').innerText = `Tu record: ${puntajeActual}`
+      
+      }
+      else{
+        document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}`
+
+      }
+    }
+    
+   }
+   puntajeActual = 0
 }
 
 async function mostrarDesc2(){ // si juego 2 tiene mas descargas
@@ -307,14 +326,9 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
       document.getElementById('flechaVerde').disabled = false;
       document.getElementById("modalPerdiste").style.display = "flex";
       document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
-      puntajeActual = 0
       document.getElementById('IdImagenRespuesta').style.display = 'none';
       document.getElementById("idVs").style.display = "flex";
-    for (let i = 0; i < users.length; i++) {
-    if (users[i].email == mailActual) {
-      document.getElementById('IdPuntajeMax').innerText = `Tu record: ${users[i].puntaje_max}` // hay que hacer q si consigue un record más alto se modifique en la bdd
-    }
-   }
+      chequearPuntaje(users)
   }, 2000);
   
   }

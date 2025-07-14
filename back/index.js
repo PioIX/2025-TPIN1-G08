@@ -113,7 +113,7 @@ app.put('/modificarpuntaje', async function (req, res){
     try {
         console.log(req.body)
         await realizarQuery(`
-            UPDATE Usuarios SET puntaje_max = ${req.body.puntaje_max}
+            UPDATE Usuarios SET puntaje_max = ${req.body.puntaje_max.puntajeActual} WHERE email = "${req.body.email}"
             `)
     } catch (error){
         res.send(error.message)
