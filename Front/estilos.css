@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 /* Pantalla de Inicio */
@@ -344,7 +344,7 @@ body {
 .versus {
   font-size: 24px;
   font-weight: bold;
-  color: #222;
+  color: rgb(222, 255, 215);
 }
 /* Pantalla modal */
 .modal {
@@ -599,4 +599,27 @@ h1{
 
 .IdImagenRespuesta{
   width: 65px;
+}
+
+.tituloJuego{
+  color: rgb(222, 255, 215);
+}
+.audioImg{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 10;
+}
+
+.oculto {
+  display: none;
+}
+
+
+.audioImg:hover {
+  transform: scale(1.25);
 }

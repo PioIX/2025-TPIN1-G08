@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Higher or Lower</title>
   <link rel="stylesheet" href="/Front/estilos.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="https://cdn.pixabay.com/photo/2013/07/12/12/18/arrow-145532_1280.png">
 </head>
 <body>
+<audio id="audioFondo" src="Audios/videoplayback.mp4" loop></audio>
+<audio id="audioIncorrecto" src="Audios/lose sound effect.mp3"></audio>
 
+<div id="audioBoton" style="display: none;">
+<img src="https://cdn-icons-png.flaticon.com/512/25/25695.png" alt="" class="audioImg" onclick="mutear()" id="audioOn">
+<img src="https://cdn-icons-png.flaticon.com/512/4546/4546899.png" alt="" class="audioImg oculto" onclick="playSound()" id="audioOff">
+</div>
   <!-- Pantalla de Inicio -->
   <div class="pantalla-inicio" id="inicio" style="display: flex;">
     <div class="inicio-contenido">
@@ -25,7 +32,7 @@
           <span>of</span>
           <span class="bold">GAMES</span>
         </div><br>
-        <button class="boton-play" onclick="mostrarLogIn()">PLAY</button>
+        <button class="boton-play" onclick="mostrarLogIn(), iniciarMusica(), divSonido()">PLAY</button>
       </div>
     </div>
   </div>
@@ -33,7 +40,7 @@
 
   <!-- Pantalla de Login -->
   <div class="pantalla-login" id="logIn" style="display: none;">
-    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+    <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">
 
     <div class="login-box">
       <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" class="avatar" alt="Avatar">
@@ -48,7 +55,7 @@
 
   <!-- Modal para Administrador -->
 <div id="modal-admin" class="modal" style="display: none;">
-  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">
   <div class="modal-contenido">
     <h2>Bienvenido, Administrador</h2>
     <p>¿Qué desea hacer?</p>
@@ -62,7 +69,7 @@
 <!-- Pantalla de Administración -->
 
 <div class="pantalla-admin" id="admin" style="display: none;">
-  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">
   <h1>Panel de Administración</h1>
   <br>
 
@@ -91,7 +98,7 @@
 </div>
 <!-- Modal para Modificar Juego -->
 <dialog id="modal-modificar-juego" class="modal" style="display: none;">
-  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">
   <div class="modal-contenido">
     <h2>Modificar Juego</h2>
     <input type="text" id="mod-nombre" placeholder="Nuevo nombre del juego">
@@ -107,7 +114,7 @@
 
 <!-- Chequear juego -->
 <div class="chequear-juego" id="otro-panel" style="display: none;">
-  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+  <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">
   <br>
   <div class="juego-cambiado">
     <h1>ASÍ QUEDA</h1>
@@ -127,8 +134,8 @@
 
   <!--pagina Juego-->
   <div class="pantalla-juego" id="juego" style="display: none;">
-<h2>¿QUIÉN TIENE MÁS DESCARGAS?</h2>
-<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio()">
+<h2 class = "tituloJuego">¿QUIÉN TIENE MÁS DESCARGAS?</h2>
+<img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">
 <br>
 <br>
 <br>
@@ -169,7 +176,7 @@
     <br>
     <p>¿Querés intentarlo de nuevo?</p>
     <br>
-    <button onclick="juegoAleatorio(), mostrarJuego()" class="botonAdmin">Volver a jugar</button>
+    <button onclick="juegoAleatorio(), mostrarJuego(), iniciarMusica()" class="botonAdmin">Volver a jugar</button>
   </div>
 </div>
 <script src = "dom.js"></script>

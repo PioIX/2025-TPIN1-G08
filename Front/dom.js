@@ -18,6 +18,7 @@ function mostrarInicio() {
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
     document.getElementById("modalPerdiste").style.display = "none";
+    document.getElementById('audioBoton').style.display = 'none';
 }
 
 function mostrarJuego() {
