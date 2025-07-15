@@ -220,8 +220,8 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
   document.getElementById('idEspacio2').style.display = 'none'
   document.getElementById('idEspacio3').style.display = 'none'
   if (document.getElementById('idCantDescargas').innerText >= document.getElementById('idCantDescargas2').innerText) {
-    document.getElementById('flechaRoja').disabled = true;
-    document.getElementById('flechaVerde').disabled = true;
+    document.getElementById("flechaRoja").onclick = null;
+    document.getElementById("flechaVerde").onclick = null;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
     if (document.getElementById('idCantDescargas').innerText > document.getElementById('idCantDescargas2').innerText){
@@ -234,23 +234,26 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
       document.getElementById("idVs").style.display = "none";
     }
   setTimeout(() => {
-    document.getElementById('flechaRoja').disabled = false;
-    document.getElementById('flechaVerde').disabled = false;
+    document.getElementById("flechaRoja").onclick = mostrarDesc1;
+    document.getElementById("flechaVerde").onclick = mostrarDesc2;
     document.getElementById('idCantDescargas2').style.display = 'none';
     document.getElementById('IdImagenRespuesta').style.display = 'none';
     document.getElementById("idVs").style.display = "flex";
     continuarJuego();
   }, 2000); // 1000 milisegundos = 1 segundos
+
 }else{
     const users = await usuarios();
+    detenerMusica()
+    audioIncorrecto()
     document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/11379/11379029.png`
     document.getElementById('IdImagenRespuesta').style.display = 'flex'
     document.getElementById("idVs").style.display = "none";
-    document.getElementById('flechaRoja').disabled = true;
-    document.getElementById('flechaVerde').disabled = true;
+    document.getElementById("flechaRoja").onclick = null;
+    document.getElementById("flechaVerde").onclick = null;
      setTimeout(() => {
-      document.getElementById('flechaRoja').disabled = false;
-      document.getElementById('flechaVerde').disabled = false;
+      document.getElementById("flechaRoja").onclick = mostrarDesc1;
+      document.getElementById("flechaVerde").onclick = mostrarDesc2;
       document.getElementById("modalPerdiste").style.display = "flex";
       document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
       document.getElementById('IdImagenRespuesta').style.display = 'none';
@@ -291,8 +294,8 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
   document.getElementById('idEspacio2').style.display = 'none'
   document.getElementById('idEspacio3').style.display = 'none'
   if (document.getElementById('idCantDescargas').innerText <= document.getElementById('idCantDescargas2').innerText){
-    document.getElementById('flechaRoja').disabled = true;
-    document.getElementById('flechaVerde').disabled = true;
+    document.getElementById("flechaRoja").onclick = null;
+    document.getElementById("flechaVerde").onclick = null;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
     if (document.getElementById('idCantDescargas').innerText < document.getElementById('idCantDescargas2').innerText){
@@ -306,8 +309,8 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
       document.getElementById("idVs").style.display = "none";
     }
     setTimeout(() => {
-    document.getElementById('flechaRoja').disabled = false;
-    document.getElementById('flechaVerde').disabled = false;
+    document.getElementById("flechaRoja").onclick = mostrarDesc1;
+    document.getElementById("flechaVerde").onclick = mostrarDesc2;
     document.getElementById('idCantDescargas2').style.display = 'none';
     document.getElementById('IdImagenRespuesta').style.display = 'none';
     document.getElementById("idVs").style.display = "flex";
@@ -316,14 +319,16 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
   
   }else{
     const users = await usuarios();
+    detenerMusica()
+    audioIncorrecto()
     document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/11379/11379029.png`
     document.getElementById('IdImagenRespuesta').style.display = 'flex'
     document.getElementById("idVs").style.display = "none";
-    document.getElementById('flechaRoja').disabled = true;
-    document.getElementById('flechaVerde').disabled = true;
+    document.getElementById("flechaRoja").onclick = null;
+    document.getElementById("flechaVerde").onclick = null;
      setTimeout(() => {
-      document.getElementById('flechaRoja').disabled = false;
-      document.getElementById('flechaVerde').disabled = false;
+      document.getElementById("flechaRoja").onclick = mostrarDesc1;
+      document.getElementById("flechaVerde").onclick = mostrarDesc2;
       document.getElementById("modalPerdiste").style.display = "flex";
       document.getElementById('IdPuntajeActual2').innerText = `Puntaje: ${puntajeActual}`
       document.getElementById('IdImagenRespuesta').style.display = 'none';
@@ -333,4 +338,39 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
   
   }
 }
+function iniciarMusica() {
+  const audio = document.getElementById('audioFondo');
+  audio.play().catch((e) => {
+  });
+}
 
+function detenerMusica() {
+  const audio = document.getElementById('audioFondo');
+  audio.pause();
+  audio.currentTime = 0; // vuelve al inicio por si la querés reproducir de nuevo después
+}
+
+function audioIncorrecto() {
+  
+  document.getElementById('audioIncorrecto').play();
+}
+
+function mutear(){
+  document.getElementById('audioOn').classList.add('oculto');
+  document.getElementById('audioOff').classList.remove('oculto');
+  document.getElementById('audioIncorrecto').volume = 0.0
+  document.getElementById('audioFondo').volume = 0.0
+}
+
+function playSound(){
+  document.getElementById('audioOff').classList.add('oculto');
+  document.getElementById('audioOn').classList.remove('oculto');
+  document.getElementById('audioIncorrecto').volume = 0.2
+  document.getElementById('audioFondo').volume = 0.2
+}
+document.getElementById('audioIncorrecto').volume = 0.2
+document.getElementById('audioFondo').volume = 0.2
+function divSonido(){
+  document.getElementById('audioBoton').style.display = 'flex';
+  
+}
