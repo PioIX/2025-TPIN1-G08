@@ -35,6 +35,7 @@ if(idLogged > 0){
     mailActual = email
   }else{
     mostrarJuego()
+    juegoAleatorio()
     mailActual = email
   }
 }else if(idLogged == -2){
@@ -53,8 +54,9 @@ async function registrarse(){
   const idLogged = await checkLogIn(email, password)
   console.log(idLogged);
   if(idLogged == -2){
-    nuevosDatosUser()
-    mostrarJuego()
+    await nuevosDatosUser()
+    await mostrarJuego()
+    juegoAleatorio()
     mailActual = email
   } else  {
     alert("El email ya ha sido utilizado")
@@ -165,6 +167,7 @@ async function juegoAleatorio() {
 
 async function mostrarJuegos(numeroRandom1,numeroRandom2) {
   const games = await juegos();
+  puntajeActual = 0
  for (let i = 0; i < games.length; i++) {
   if (games[i].id_juego == numeroRandom1) {
       imagen1 = games[i].imagen
@@ -219,12 +222,12 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
   document.getElementById('idEspacio1').style.display = 'none'
   document.getElementById('idEspacio2').style.display = 'none'
   document.getElementById('idEspacio3').style.display = 'none'
-  if (document.getElementById('idCantDescargas').innerText >= document.getElementById('idCantDescargas2').innerText) {
+  if (parseInt(document.getElementById('idCantDescargas').innerText) >= parseInt(document.getElementById('idCantDescargas2').innerText)) {
     document.getElementById("flechaRoja").onclick = null;
     document.getElementById("flechaVerde").onclick = null;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
-    if (document.getElementById('idCantDescargas').innerText > document.getElementById('idCantDescargas2').innerText){
+    if (parseInt(document.getElementById('idCantDescargas').innerText) > parseInt(document.getElementById('idCantDescargas2').innerText)){
     document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
     document.getElementById('IdImagenRespuesta').style.display = 'flex'
     document.getElementById("idVs").style.display = "none";
@@ -293,12 +296,12 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
   document.getElementById('idEspacio1').style.display = 'none'
   document.getElementById('idEspacio2').style.display = 'none'
   document.getElementById('idEspacio3').style.display = 'none'
-  if (document.getElementById('idCantDescargas').innerText <= document.getElementById('idCantDescargas2').innerText){
+  if (parseInt(document.getElementById('idCantDescargas').innerText) <= parseInt(document.getElementById('idCantDescargas2').innerText)){
     document.getElementById("flechaRoja").onclick = null;
     document.getElementById("flechaVerde").onclick = null;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
-    if (document.getElementById('idCantDescargas').innerText < document.getElementById('idCantDescargas2').innerText){
+    if (parseInt(document.getElementById('idCantDescargas').innerText) < parseInt(document.getElementById('idCantDescargas2').innerText)){
     document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
     document.getElementById('IdImagenRespuesta').style.display = 'flex'
     document.getElementById("idVs").style.display = "none";
