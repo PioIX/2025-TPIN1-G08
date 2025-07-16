@@ -83,14 +83,43 @@ function newGame(){
 }
 
 async function idJuego(){
-    const games = await juegos();
-    let id_juego = getIdJuegoEliminar();
-    if (id_juego == "") {
+  await eliminarJuego(idJuegoE);
+}
+
+let idUserE = null
+async function checkUser(){
+  const users = await usuarios()
+    idUserE = getIdUser()
+    if(idUserE == ""){
+        return alert("por favor llene la casilla de eliminar usuario")
+    }
+    for (let i = 0; i < users.length; i++){ 
+      if (users[i].id_usuario == idUserE) {
+        document.getElementById("id-usuario-actual").innerText = `ID: ${idUserE}`;
+        document.getElementById("email-usuario-actual").innerText = `Mail: ${users[i].email}`;
+        if(users[i].isAdmin == 0){
+          document.getElementById("isAdmin-usuario-actual").innerText = `Estado: Jugador`;
+        }else{
+          document.getElementById("isAdmin-usuario-actual").innerText = `Estado: Administrador`;
+        }
+        document.getElementById("modal-eliminar-usuario").style.display = "block";
+        return 1
+    }
+}
+  alert("El id no existe")
+}
+let idJuegoE = null
+async function checkJuego(){
+  const games = await juegos();
+    idJuegoE = getIdJuegoEliminar();
+    if (idJuegoE == "") {
         return alert("Por favor, complete la casilla de eliminar juego");
     }
     for (let i = 0; i < games.length; i++) {
-        if (games[i].id_juego == id_juego) {
-            await eliminarJuego(id_juego);
+        if (games[i].id_juego == idJuegoE) {
+          document.getElementById("id-juegoE").innerText = `ID: ${idJuegoE}`;
+          document.getElementById("modal-eliminar-juego").style.display = "block";
+          document.getElementById("nombre-juego").innerText = `${games[i].game_name}`;
             return 1
         }
     }
@@ -98,19 +127,9 @@ async function idJuego(){
 }
 
 
+
 async function idUser(){
-    const users = await usuarios()
-    let id_user = getIdUser()
-    if(id_user == ""){
-        return alert("por favor llene la casilla de eliminar usuario")
-    }
-    for (let i = 0; i < users.length; i++){ 
-      if (users[i].id_usuario == id_user) {
-        await eliminarUsuario(id_user)
-        return 1
-    }
-}
-  alert("El id no existe")
+  await eliminarUsuario(idUserE)
 }
 
 function validarImagen(url) {
