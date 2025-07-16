@@ -116,7 +116,7 @@ function getGameName() {
 }
 
 function getCantDesc() {
-    return document.getElementById("cantidad_descargas").value
+    return document.getElementById("cantidad_descargas").value;
 }
 
 function getImagen() {
