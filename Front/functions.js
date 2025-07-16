@@ -73,7 +73,7 @@ function newGame(){
     if(getGameName() == "" | getCantDesc() == ""){
         return alert("por favor llene las casillas de agregar juego, la imagen no es necesaria")
     }
-    if(typeof getCantDesc() == "string"){
+    if(isNaN(Number(getCantDesc()))){ //Esto es para chequear que si no es numero se vaya
       return alert("por favor llene la casilla de cantidad de descargas con un numero")
   }
     if (!datos.imagen) {
@@ -143,7 +143,7 @@ async function cambiarJuego(){
       alert("La URL de imagen no es válida. Se usará una imagen por defecto.");
       modificar.imagen = "https://i.pinimg.com/736x/5d/e6/09/5de609b28d7230fb7669ff3810951873.jpg";
   }
-    modificarJuego(modificar )
+    modificarJuego(modificar)
     checkearJuego()
   }
 
@@ -172,14 +172,16 @@ async function mostrarJuegos(numeroRandom1,numeroRandom2) {
   if (games[i].id_juego == numeroRandom1) {
       imagen1 = games[i].imagen
       nombre1 = games[i].game_name
-      cantDesc1 = games[i].cant_descargas
+      cantDesc1 = formatearConPuntos(games[i].cant_descargas)
+
+      
   }
 }
 for (let i = 0; i < games.length; i++) {
   if (games[i].id_juego == numeroRandom2) {
       imagen2 = games[i].imagen
       nombre2 = games[i].game_name
-      cantDesc2 = games[i].cant_descargas
+      cantDesc2 = formatearConPuntos(games[i].cant_descargas)
   }
 }
 document.getElementById('idEspacio1').style.display = 'flex'
@@ -208,7 +210,7 @@ async function continuarJuego() {
   }
   document.getElementById('IdImagenJuego2').src = `${games[numeroRand2].imagen}`
   document.getElementById('IdModNombrejuego2').innerText = `${games[numeroRand2].game_name}`
-  document.getElementById('idCantDescargas2').innerText = `${games[numeroRand2].cant_descargas} Descargas`
+  document.getElementById('idCantDescargas2').innerText = `${formatearConPuntos(games[numeroRand2].cant_descargas)} Descargas`
 
   document.getElementById('idCantDescargas2').style.display = 'none'
   document.getElementById('idEspacio1').style.display = 'flex'
@@ -222,12 +224,12 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
   document.getElementById('idEspacio1').style.display = 'none'
   document.getElementById('idEspacio2').style.display = 'none'
   document.getElementById('idEspacio3').style.display = 'none'
-  if (parseInt(document.getElementById('idCantDescargas').innerText) >= parseInt(document.getElementById('idCantDescargas2').innerText)) {
+  if (quitarPuntos(document.getElementById('idCantDescargas').innerText) >= quitarPuntos(document.getElementById('idCantDescargas2').innerText)) {
     document.getElementById("flechaRoja").onclick = null;
     document.getElementById("flechaVerde").onclick = null;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
-    if (parseInt(document.getElementById('idCantDescargas').innerText) > parseInt(document.getElementById('idCantDescargas2').innerText)){
+    if (quitarPuntos(document.getElementById('idCantDescargas').innerText) > quitarPuntos(document.getElementById('idCantDescargas2').innerText)){
     document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
     document.getElementById('IdImagenRespuesta').style.display = 'flex'
     document.getElementById("idVs").style.display = "none";
@@ -296,12 +298,12 @@ async function mostrarDesc2(){ // si juego 2 tiene mas descargas
   document.getElementById('idEspacio1').style.display = 'none'
   document.getElementById('idEspacio2').style.display = 'none'
   document.getElementById('idEspacio3').style.display = 'none'
-  if (parseInt(document.getElementById('idCantDescargas').innerText) <= parseInt(document.getElementById('idCantDescargas2').innerText)){
+  if (quitarPuntos(document.getElementById('idCantDescargas').innerText) <= quitarPuntos(document.getElementById('idCantDescargas2').innerText)){
     document.getElementById("flechaRoja").onclick = null;
     document.getElementById("flechaVerde").onclick = null;
     puntajeActual += 1;
     document.getElementById('IdPuntajeActual').innerText = `${puntajeActual}`;
-    if (parseInt(document.getElementById('idCantDescargas').innerText) < parseInt(document.getElementById('idCantDescargas2').innerText)){
+    if (quitarPuntos(document.getElementById('idCantDescargas').innerText) < quitarPuntos(document.getElementById('idCantDescargas2').innerText)){
     document.getElementById('IdImagenRespuesta').src = `https://cdn-icons-png.flaticon.com/512/1709/1709977.png`
     document.getElementById('IdImagenRespuesta').style.display = 'flex'
     document.getElementById("idVs").style.display = "none";
@@ -376,4 +378,13 @@ document.getElementById('audioFondo').volume = 0.2
 function divSonido(){
   document.getElementById('audioBoton').style.display = 'flex';
   
+}
+
+function formatearConPuntos(numero) {
+  return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function quitarPuntos(cadenaConPuntos) {
+  const sinPuntos = cadenaConPuntos.replace(/\./g, "");
+  return parseInt(sinPuntos, 10);
 }
