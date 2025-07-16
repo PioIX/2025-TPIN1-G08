@@ -87,17 +87,44 @@
 
   <div class="admin-formulario">
     <input type="text" placeholder="Ingrese el ID del juego que desea eliminar" id="id_juego_eliminar" class="input3">
-    <button onclick="idJuego()" class="botonAdmin">Eliminar Juego</button>
+    <button onclick="checkJuego()" class="botonAdmin">Eliminar Juego</button>
   </div>
 
   <div class="admin-formulario">
     <input type="text" placeholder="Ingrese el ID del usuario que desea eliminar" id="id_user" class="input3">
-    <button onclick="idUser()" class="botonAdmin">Eliminar Usuario</button>
+    <button onclick="checkUser()" class="botonAdmin">Eliminar Usuario</button>
   </div>
   <button class="boton-play2" onclick="juegoAleatorio(), mostrarJuego()">JUGAR</button>
 </div>
 
-
+<!-- Modal de confirmación para eliminar usuario -->
+<div id="modal-eliminar-usuario" class="modalEliminar">
+  <div class="modalEliminar-contenido">
+    <span class="cerrar" onclick="administrar()">&times;</span>
+    <p><span id="id-usuario-actual"></span></p>
+    <br>
+    <p><span id="email-usuario-actual"></span></p>
+    <br>
+    <p><span id="isAdmin-usuario-actual"></span></p>
+    <br>
+    <button onclick="idUser()" class="botonEliminar">Eliminar</button>
+    <button onclick="administrar()" class="botonEliminar2">Cancelar</button>
+  </div>
+</div>
+<!-- Modal de confirmación para eliminar juego -->
+<div id="modal-eliminar-juego" class="modalEliminar">
+  <div class="modalEliminar-contenido">
+    <span class="cerrar" onclick="administrar()">&times;</span>
+    <br>
+    <p><span id="id-juegoE"></span></p>
+    <br>
+    <h2 id="nombre-juego"></h2>
+    <br>
+    <br>
+    <button onclick="idJuego()" class="botonEliminar">Eliminar</button>
+    <button onclick="administrar()" class="botonEliminar2">Cancelar</button>
+  </div>
+</div>
 <!-- Modal para Modificar Juego -->
 <dialog id="modal-modificar-juego" class="modal" style="display: none;">
   <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio" class="icono-casa" onclick="mostrarInicio(), detenerMusica()">

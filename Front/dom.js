@@ -7,6 +7,8 @@ function mostrarLogIn() {
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
     document.getElementById("modalPerdiste").style.display = "none";
+    document.getElementById("modal-eliminar-usuario").style.display = "none";
+    document.getElementById("modal-eliminar-juego").style.display = "none";
 }
 
 function mostrarInicio() {
@@ -19,6 +21,8 @@ function mostrarInicio() {
     document.getElementById('otro-panel').style.display = 'none'
     document.getElementById("modalPerdiste").style.display = "none";
     document.getElementById('audioBoton').style.display = 'none';
+    document.getElementById("modal-eliminar-usuario").style.display = "none";
+    document.getElementById("modal-eliminar-juego").style.display = "none"
 }
 
 function mostrarJuego() {
@@ -33,6 +37,8 @@ function mostrarJuego() {
     document.getElementById('idCantDescargas2').style.display = 'none'
     document.getElementById('IdImagenRespuesta').style.display = 'none';
     document.getElementById("idVs").style.display = "flex";
+    document.getElementById("modal-eliminar-usuario").style.display = "none";
+    document.getElementById("modal-eliminar-juego").style.display = "none"
 }
 function mostrarModal() {
     document.getElementById('inicio').style.display = 'none';
@@ -43,6 +49,8 @@ function mostrarModal() {
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
     document.getElementById("modalPerdiste").style.display = "none";
+    document.getElementById("modal-eliminar-usuario").style.display = "none";
+    document.getElementById("modal-eliminar-juego").style.display = "none"
 }
 function administrar(){
     document.getElementById('inicio').style.display = 'none';
@@ -53,6 +61,8 @@ function administrar(){
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'none'
     document.getElementById("modalPerdiste").style.display = "none";
+    document.getElementById("modal-eliminar-usuario").style.display = "none";
+    document.getElementById("modal-eliminar-juego").style.display = "none"
 }
 
 function checkearJuego(){
@@ -63,7 +73,9 @@ function checkearJuego(){
     document.getElementById('admin').style.display = 'none';
     document.getElementById('modal-modificar-juego').style.display = 'none';
     document.getElementById('otro-panel').style.display = 'flex'
+    document.getElementById("modal-eliminar-usuario").style.display = "none";
     document.getElementById("modalPerdiste").style.display = "none";
+    document.getElementById("modal-eliminar-juego").style.display = "none"
 }
 let idParaModificar = null
 async function modalCambiarJuego(){
@@ -83,6 +95,8 @@ async function modalCambiarJuego(){
             document.getElementById('admin').style.display = 'none';
             document.getElementById('modal-modificar-juego').style.display = 'flex';
             document.getElementById("modalPerdiste").style.display = "none";
+            document.getElementById("modal-eliminar-usuario").style.display = "none";
+            document.getElementById("modal-eliminar-juego").style.display = "none"
             return 1
         }
     }
