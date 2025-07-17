@@ -52,7 +52,6 @@ async function registrarse(){
     return alert("Por favor llena todos los espacios")
   }
   const idLogged = await checkLogIn(email, password)
-  console.log("Id logueado: " + idLogged);
   if(idLogged == -2){
     await nuevosDatosUser()
     await mostrarJuego()
