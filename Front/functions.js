@@ -150,13 +150,27 @@ async function cambiarJuego(){
         imagen: getModImg()
     }
     if (!modificar.game_name){
-          modificar.game_name = games[idParaModificar - 1 ].game_name  
+      for (let i = 0; i < games.length; i++) {
+        if (games[i].id_juego == idParaModificar) {
+          modificar.game_name = games[i].game_name  
+        }
+    }
+          
     }
     if (!modificar.cant_descargas){
-          modificar.cant_descargas = games[idParaModificar - 1].cant_descargas  
+      for (let i = 0; i < games.length; i++) {
+        if (games[i].id_juego == idParaModificar) {
+          modificar.cant_descargas = games[i].cant_descargas   
+        } 
+      }
     }
+
     if(!modificar.imagen) {
-      modificar.imagen = games[idParaModificar - 1].imagen
+      for (let i = 0; i < games.length; i++) {
+        if (games[i].id_juego == idParaModificar) {
+          modificar.imagen = games[i].imagen   
+        } 
+      }
     }else if (imagenValida == false) {
       alert("La URL de imagen no es válida. Se usará una imagen por defecto.");
       modificar.imagen = "https://i.pinimg.com/736x/5d/e6/09/5de609b28d7230fb7669ff3810951873.jpg";
@@ -178,10 +192,10 @@ let puntajeActual = 0
 
 async function juegoAleatorio() {
   const games = await juegos();
-  let numeroRandom1 = await numeroAleatorioEntre(0, games.length -1)
-  let numeroRandom2 = await numeroAleatorioEntre(0, games.length -1)
+  let numeroRandom1 = await numeroAleatorioEntre(0, games[games.length -1].id_juego)
+  let numeroRandom2 = await numeroAleatorioEntre(0, games[games.length -1].id_juego)
   while(numeroRandom1 == numeroRandom2){
-    numeroRandom2 = await numeroAleatorioEntre(0, games.length -1)
+    numeroRandom2 = await numeroAleatorioEntre(0, games[games.length -1].id_juego)
   }
   mostrarJuegos(numeroRandom1, numeroRandom2)
 }
@@ -223,9 +237,9 @@ async function continuarJuego() {
   document.getElementById('IdImagenJuego1').src = `${document.getElementById('IdImagenJuego2').src}`
   document.getElementById('IdModNombrejuego1').innerText = `${document.getElementById('IdModNombrejuego2').innerText}`
   document.getElementById('idCantDescargas').innerText = `${document.getElementById('idCantDescargas2').innerText}`
-  let numeroRand2 = await numeroAleatorioEntre(0, games.length -1)
+  let numeroRand2 = await numeroAleatorioEntre(0, games[games.length -1].id_juego)
   while(document.getElementById('IdModNombrejuego1').innerText == `${games[numeroRand2].game_name}`){
-    numeroRand2 = await numeroAleatorioEntre(0, games.length -1)
+    numeroRand2 = await numeroAleatorioEntre(0, games[games.length -1].id_juego)
   }
   document.getElementById('IdImagenJuego2').src = `${games[numeroRand2].imagen}`
   document.getElementById('IdModNombrejuego2').innerText = `${games[numeroRand2].game_name}`
