@@ -28,7 +28,7 @@ async function logIn(){
       return alert("Por favor llena todos los espacios")
     }
     const idLogged = await checkLogIn(email, password)
-    console.log(idLogged);
+    console.log("Id logueado: " + idLogged);
 if(idLogged > 0){
   if(idLogged == 1){
     mostrarModal()
@@ -52,7 +52,7 @@ async function registrarse(){
     return alert("Por favor llena todos los espacios")
   }
   const idLogged = await checkLogIn(email, password)
-  console.log(idLogged);
+  console.log("Id logueado: " + idLogged);
   if(idLogged == -2){
     await nuevosDatosUser()
     await mostrarJuego()
@@ -73,7 +73,7 @@ function newGame(){
     if(getGameName() == "" | getCantDesc() == ""){
         return alert("por favor llene las casillas de agregar juego, la imagen no es necesaria")
     }
-    if(isNaN(Number(getCantDesc()))){ //Esto es para chequear que si no es numero se vaya
+    if(isNaN(Number(getCantDesc()))){ //Esto es para chequear que si no es un numero te salga el alert
       return alert("por favor llene la casilla de cantidad de descargas con un numero")
   }
     if (!datos.imagen) {
@@ -135,8 +135,8 @@ async function idUser(){
 function validarImagen(url) {
   return new Promise((resolve) => {
     const img = new Image();
-    img.onload = () => resolve(true);     // Imagen cargó bien
-    img.onerror = () => resolve(false);   // Falló la carga
+    img.onload = () => resolve(true);     
+    img.onerror = () => resolve(false);
     img.src = url;
   });
 }
@@ -168,19 +168,22 @@ async function cambiarJuego(){
 
 let puntajeActual = 0
 
-  function numeroAleatorioEntre(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+  async function numeroAleatorioEntre(min, max) {
+    const games = await juegos();
+    numRand = Math.floor(Math.random() * (max - min + 1)) + min;
+    while(!games[numRand]) {
+      numRand = Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    return numRand
   }
 
 async function juegoAleatorio() {
   const games = await juegos();
-  let numeroRandom1 = numeroAleatorioEntre(0, games.length -1)
-  let numeroRandom2 = numeroAleatorioEntre(0, games.length -1)
+  let numeroRandom1 = await numeroAleatorioEntre(0, games.length -1)
+  let numeroRandom2 = await numeroAleatorioEntre(0, games.length -1)
   while(numeroRandom1 == numeroRandom2){
-    numeroRandom2 = numeroAleatorioEntre(0, games.length -1)
+    numeroRandom2 = await numeroAleatorioEntre(0, games.length -1)
   }
-  console.log(numeroRandom1)
-  console.log(numeroRandom2)
   mostrarJuegos(numeroRandom1, numeroRandom2)
 }
 
@@ -191,7 +194,7 @@ async function mostrarJuegos(numeroRandom1,numeroRandom2) {
   if (games[i].id_juego == numeroRandom1) {
       imagen1 = games[i].imagen
       nombre1 = games[i].game_name
-      cantDesc1 = formatearConPuntos(games[i].cant_descargas)
+      cantDesc1 = formatearConPuntos(games[i].cant_descargas);
 
       
   }
@@ -221,11 +224,9 @@ async function continuarJuego() {
   document.getElementById('IdImagenJuego1').src = `${document.getElementById('IdImagenJuego2').src}`
   document.getElementById('IdModNombrejuego1').innerText = `${document.getElementById('IdModNombrejuego2').innerText}`
   document.getElementById('idCantDescargas').innerText = `${document.getElementById('idCantDescargas2').innerText}`
-  let numeroRand2 = numeroAleatorioEntre(0, games.length -1)
-  console.log(numeroRand2)
-  console.log(document.getElementById('IdModNombrejuego1').innerText)
+  let numeroRand2 = await numeroAleatorioEntre(0, games.length -1)
   while(document.getElementById('IdModNombrejuego1').innerText == `${games[numeroRand2].game_name}`){
-    numeroRand2 = numeroAleatorioEntre(0, games.length -1)
+    numeroRand2 = await numeroAleatorioEntre(0, games.length -1)
   }
   document.getElementById('IdImagenJuego2').src = `${games[numeroRand2].imagen}`
   document.getElementById('IdModNombrejuego2').innerText = `${games[numeroRand2].game_name}`
@@ -288,12 +289,10 @@ async function mostrarDesc1(){ // si juego 1 tiene mas descargas
 }
 
 function chequearPuntaje(users) {
-  console.log(users)
-    console.log(puntajeActual)
+    console.log("puntaje actual: " + puntajeActual)
     for (let i = 0; i < users.length; i++) {
     if (users[i].email == mailActual) {
       if (puntajeActual > users[i].puntaje_max){
-        console.log ("aaaa")
         let puntajeNuevo = {
           puntajeActual: puntajeActual
         }
@@ -371,7 +370,7 @@ function iniciarMusica() {
 function detenerMusica() {
   const audio = document.getElementById('audioFondo');
   audio.pause();
-  audio.currentTime = 0; // vuelve al inicio por si la querés reproducir de nuevo después
+  audio.currentTime = 0;
 }
 
 function audioIncorrecto() {

@@ -86,7 +86,7 @@ async function modalCambiarJuego(){
     }
     for (let i = 0; i < games.length; i++) {
         if (games[i].id_juego == id_juego) {
-            console.log(id_juego)
+            console.log("Id del juego para modificar: " + id_juego)
             idParaModificar = id_juego
             document.getElementById('inicio').style.display = 'none';
             document.getElementById('logIn').style.display = 'none';
@@ -103,13 +103,7 @@ async function modalCambiarJuego(){
     alert("El id no existe");
     
 }
-/*let modal1 = document.getElementById("modal-modificar-juego")
-function openmodal() {
-    modal1.showModal()
-}
-function closemodal() {
-    modal1.close()
-}*/
+
 function getEmail() {
     return document.getElementById("email").value;
 }
@@ -118,13 +112,6 @@ function getPassword() {
     return document.getElementById("contraseña").value;
 }
 
-//Trae las imagenes de la base de datos!!
-/*async function mostrarImagen(){
-    const juegosTraidos = await juegos()
-    document.getElementById("juegoimagen").src = juegosTraidos[3].imagen
-}*/
-
-// Admin
 function getGameName() {
     return document.getElementById("game_name").value;
 }

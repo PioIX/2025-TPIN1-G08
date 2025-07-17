@@ -17,10 +17,6 @@ app.get('/', function(req, res){
     });
 });
 
-/**
- * req = request. en este objeto voy a tener todo lo que reciba del cliente
- * res = response. Voy a responderle al cliente
- */
 //Pongo el servidor a escuchar
 app.listen(port, function(){
     console.log(`Server running in http://localhost:${port}`);
