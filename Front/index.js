@@ -54,8 +54,8 @@ async function nuevoJuego(datos){
         body: JSON.stringify(datos)
     })
     let nuevoJuego = await result.json()
-    console.log(nuevoJuego)
-    alert("El juego ha sido agregado correctamente")  //fijarse si luego del alert el return sigue funcionando
+    console.log("nuevo juego: " + nuevoJuego)
+    alert("El juego ha sido agregado correctamente")
     return nuevoJuego
 }
 
