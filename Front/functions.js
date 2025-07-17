@@ -52,7 +52,10 @@ async function registrarse(){
     return alert("Por favor llena todos los espacios")
   }
   const idLogged = await checkLogIn(email, password)
+<<<<<<< Updated upstream
   console.log(idLogged);
+=======
+>>>>>>> Stashed changes
   if(idLogged == -2){
     await nuevosDatosUser()
     await mostrarJuego()
