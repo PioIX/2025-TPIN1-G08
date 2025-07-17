@@ -53,7 +53,10 @@ async function registrarse(){
   }
   const idLogged = await checkLogIn(email, password)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   console.log(idLogged);
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   if(idLogged == -2){
